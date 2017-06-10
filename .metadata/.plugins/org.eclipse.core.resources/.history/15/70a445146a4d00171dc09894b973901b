@@ -1,0 +1,17 @@
+package gcd;
+class gcd{
+	int gce(int a,int b){
+		if(b==0){
+			return a;
+		}else
+			return gce(a,a%b);
+	}
+}
+public class gc {
+
+	public static void main(String[] args) {
+		gcd d=new gcd();
+	
+	d.gce(70,25);
+	}
+}

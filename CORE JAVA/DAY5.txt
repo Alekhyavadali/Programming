@@ -1,0 +1,728 @@
+Operators:
+==========
+What are the various operators available in java?
+
+1. Arithmetic operator.
+2. Relational operators
+3. Logical operators
+4. Increment and decrement operators.
+5. instance of operator
+6. this operator.
+
+Why do we require operators?
+--- to do data manipulations.
+
+1. Arithmetic operators:
+========================
++ , - , *, /, % 
+4 / 2= 2[quotient]
+4 % 2= 0 [Remainder]
+
+Example code:
+=============
+import java.util.*;
+
+
+class Demo4
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int a,b,res;
+System.out.println("Enter two numbers");
+a=s.nextInt();
+b=s.nextInt();
+
+res=a+b;
+System.out.println("The addition result is "+res);
+res=a-b;
+System.out.println("The subraction result is "+res);
+res=a*b;
+System.out.println("The Product result is "+res);
+res=a/b;
+System.out.println("The quotient result is "+res);
+res=a%b;
+System.out.println("The remainder result is "+res);
+
+}
+}
+
+=======================================================
+2. Relational operators:
+========================
+Which are used for comparing data.
+
+< , <= [Lesser than]
+> , >= [Greater than]
+
+== [Equal to]
+
+!= [Not equal]
+
+Example code 01:
+===============
+import java.util.*;
+class Demo4
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int a,b;
+System.out.println("Enter two numbers");
+a=s.nextInt();
+b=s.nextInt();
+
+if(a==b)
+System.out.println("Both are equal");
+else
+{
+	if(a>b)
+System.out.println("Greater value is"+a);
+	else
+System.out.println("Greater value is"+b);
+}
+}
+}
+
+Example code 02:
+================
+import java.util.*;
+class Demo4
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int exam1;
+System.out.println("Enter exam1 marks");
+exam1=s.nextInt();
+
+if(exam1>=80)
+System.out.println("Passed");
+else
+System.out.println("Failed");
+
+
+}
+}
+
+3. Logical Operators:
+=====================
+-- are used to check more than one
+ conditions in a program...
+
+Three logical operators:
+&& [AND]
+|| [OR]
+! [NOT]
+
+&& [AND] - combine multiple conditions and give
+true result only when all the conditions are true..
+
+A	B	A and B
+0	0	0
+0	1	0
+1	0	0
+1	1	1
+
+
+|| [OR] - combine multiple conditions and give
+true result even if one condition is true...
+
+A 	B	A or B
+0	0	0
+0	1	1
+1 	0	1
+1  	1	1
+
+Example code 01:
+===============
+import java.util.*;
+class Demo4
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int exam1,exam2;
+System.out.println("Enter exam1 marks");
+exam1=s.nextInt();
+System.out.println("Enter exam2 marks");
+exam2=s.nextInt();
+
+if(exam1>=80 && exam2>=80)
+System.out.println("Passed");
+else
+System.out.println("Failed");
+
+
+}
+}
+
+Example code 02:
+===============
+if(exam1>=80 || exam2>=80)
+System.out.println("Passed");
+else
+System.out.println("Failed");
+
+NOT[Operator] => called as a compliment 
+operator.
+
+A  Result
+0  1	
+1  0
+
+Example code:
+=============
+
+
+int x=10;
+
+if ( ! (x==5) )
+
+! (x==5)
+! (10==5)
+! (False) = True
+
+4. Increment and decrement operators:
+=====================================
+
+Increment operators (++) = add 1 
+
+Decrement operators (--) = decrement 1
+
+int a=5;
+S.O.P (a++); 
+
+5++ => 5+1 => 6
+
+S.O.P (a--);
+
+5-- => 5-1 => 4
+
+Preincrement and post increment operators.
+
+a++ [Post increment]
+++a [Pre-increment]
+
+Predecrement and Post decrement operators.
+
+a-- [Post decrement]
+--a [Pre decrement]
+
+Example code:
+============
+
+int x=8,y;
+
+y=x++;
+(1) Y=X;8
+(2) X=X+1;9
+
+System.out.println(y);8
+System.out.println(x);9
+
+y=8
+x=9
+
+y=++x;
+(1)X=X+1;9
+(2) Y=X;9
+
+System.out.println(y);
+System.out.println(x);
+
+y=9
+x=9
+
+5. Instance of operator
+=======================
+Instance of - is used check whether
+ the Object belong
+to a particular class or not..
+
+Demo4 d=new Demo4();
+if (d instanceof Demo4)
+System.out.println(true);
+else
+System.out.println(false);
+
+
+This operator is used to prove the Object and
+ class
+relationships.
+it is used mainly while implementing the 
+concept of
+inheritance and interfaces.
+
+6. this operator:
+=================
+used to differentiate the actual variable
+ from the parameter
+variable..
+Note:
+this operator -represent the actual member 
+variable.
+
+
+class Calculate
+{
+int x=5;
+void display(int x){
+System.out.println(this.x*x);50//25
+}
+}
+class Demo4
+{
+public static void main(String[] args)
+{
+Calculate c=new Calculate();
+c.display(10);
+}
+}
+
+Chapter 2:
+Topics to be completed:
+
+1. Iterative constructs
+2. arrays
+3. String operations
+4. returning values from functions.
+
+Iterative constructs:
+=====================
+
+Write a program to display the tables of
+ multiples of 5
+upto 10.
+
+class Demo5
+{
+public static void main(String[] args)
+{
+int no=1;
+System.out.println(5*no);5
+no=no+1;2
+System.out.println(5*no);10
+no=no+1;3
+System.out.println(5*no);15
+no=no+1;
+System.out.println(5*no);
+no=no+1;
+System.out.println(5*no);
+no=no+1;
+System.out.println(5*no);
+no=no+1;
+System.out.println(5*no);
+no=no+1;
+System.out.println(5*no);
+no=no+1;
+System.out.println(5*no);
+no=no+1;
+System.out.println(5*no);
+}
+}
+
+From the above program, observations are:
+1.codes are lengthy.. 
+lines are getting duplicated.
+2. time gets wasted both for the developer 
+as well as for
+the compiler.
+
+Whenever,we have these kind of situations where the 
+task has to be repeatedly executed for multiple times..
+then in that case we can use iterative constructs.
+
+To do iterative constructs:
+we need to idenfity three important factors:
+
+1. starting condition [initial]
+2. actual logic[main condition]
+3. increment/decrement condition [re-initial]
+
+to multiples of tables of 5 upto 10
+
+int no=1; [executed only once]
+no<=10 or no<11
+no=no+1 or no++
+
+To implement iterative constructs,
+ we have different
+types of it..
+1. while loop construct
+2. do..while construct
+3. for loop constructs
+
+While loop construct:
+it is used to check the condition first and 
+then
+execute the body of the loop..
+these constructs are called as top tested loop or 
+entry check loops.
+
+syntax:
+
+while(condition)
+{
+//body of the loop
+}
+
+example code 01:
+===============
+class Demo5
+{
+public static void main(String[] args)
+{
+int no=1;
+while(no<=10)
+{
+System.out.println(no*5);
+no=no+1;
+}
+}
+}
+
+example code 02:
+================
+print even numbers from 1 to 20.
+
+initial condition : x=1
+main condition : x<=20
+
+re-intial condition : x=x+1 or x++
+
+
+class Demo5
+{
+public static void main(String[] args)
+{
+int x=1;
+while(x<=20)
+{
+if(x%2==0)
+System.out.println(x);
+x=x+1;
+}
+}
+}
+
+(or)
+
+int x=2;
+while(x<=20)
+{
+System.out.println(x);
+x=x+2;
+}
+
+======================================================
+do..while loop:
+
+reverse of while loop..
+it will first execute the body of the 
+loop atleast
+once and then check the condition.
+this is called bottom tested loop or 
+exit check loop.
+
+syntax:
+
+do
+{
+
+
+}
+while(condition)
+
+Example code: 01:
+=================
+import java.util.*;
+
+class Demo5
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+String choice;
+do
+{
+System.out.println("Enter your lucky number(1-10)");
+int no=s.nextInt();
+switch(no)
+{
+case 1:
+System.out.println("You have a good news soon!");
+break;
+case 7:
+System.out.println("You are a rockstar");
+break;
+case 4:
+System.out.println("Your Love will get success!");
+break;
+default:
+System.out.println("Happy day!");
+break;
+}
+System.out.println("Do you want to continue(yes/no)");
+choice=s.next();
+}
+while(choice.equals("yes"));
+}
+}
+
+Example code:02:
+================
+import java.util.*;
+class Demo5
+{
+public static void main(String[] args)
+{
+String result;
+Scanner s=new Scanner(System.in);
+do
+{
+System.out.println("Enter number");
+int num=s.nextInt();
+if(num%2==0)
+System.out.println("even");
+else
+System.out.println("odd");
+System.out.println("Do you want to quit(yes/no)");
+result=s.next();
+}
+while(result.equals("no"));
+}
+}
+
+for loop constructs:
+====================
+syntax:
+
+for (intial ; maincondition ; re-initial)
+{
+//body of the loop
+}
+
+Example code 01:
+================
+int x;
+for(x=1; x<=10 ; x++)
+{
+System.out.println(x);
+}
+
+Example code 02:
+================
+int x;
+for(x=0; x<=10 ; x++)
+{
+if(x%2==0)
+System.out.println(x);
+}
+
+4.Advanced for loop/Enhanced for loop
+/ Foreach loop:
+   syntax:
+for(datatype New Array name:old array name)
+for( int b:a)
+S.o.p(b);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

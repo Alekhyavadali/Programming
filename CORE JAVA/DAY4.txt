@@ -1,0 +1,497 @@
+What are the different types of programs?
+
+1.sequential
+2.decision making
+3.iterative programs.
+
+1.sequential- step by step execution of a program.
+
+int a=5,b=6;
+int res=a+b;
+System.out.println(res);
+
+2. Decision making - execute the program and
+ check the conditions.
+Based on condition result, the output will be
+ displayed..
+
+Write a code to check whether the given number is
+positive or negative.
+
+Logic : if no is greater than 0 ,then it is positive.
+
+Simple if condition:
+===================
+
+if (condition)
+{
+//statements
+}
+
+example:
+========
+import java.util.*;
+class Demo3
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+int x;
+System.out.println("Enter the number");
+x=s.nextInt();
+if(x>0)
+System.out.println("Given number is positive");
+} 
+}
+
+if..else statements:
+====================
+checks the condition, if the condition is correct
+then true statements will execute..
+otherwise the false statement will execute.
+
+syntax:
+if(condition)
+{
+//true statements
+}
+else
+{
+//false statements
+}
+
+example code:
+============
+import java.util.*;
+class Demo3
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+int x;
+System.out.println("Enter the number");
+x=s.nextInt();
+if(x>0)
+System.out.println("Given number is positive");
+else
+System.out.println("Given number is negative");
+} 
+}
+
+
+
+x=5 [value of x is 5 ie. 5 is assigned to x]
+x==5 [to compare whether value of x is five or not]
+
+Nested if..else statement :
+============================
+if we use one if statement within another if statements,
+then these statements are called as nested if ..else
+statements..
+
+example code:
+=============
+import java.util.*;
+class Demo3
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+int x;
+System.out.println("Enter the number");
+x=s.nextInt();
+if(x==0)
+{
+System.out.println("Niether positive 
+or negative");
+}
+else
+{
+	if(x>0)
+	System.out.println("Given no is positive");
+	else
+	System.out.println("Given no is negative");
+}
+} 
+}
+
+A student has to appear two exams.
+ But the condition
+is that, student has to take first exam.
+ score must be 
+greater than 80..
+then student is eligible to take second exam. if second
+exam score is also greater than 80.. then student is said
+to be passed.. even if one test exam marks is lesser than
+80 then it is said to be failed.
+
+Syntax of nested if ..else
+===========================
+
+if(condition1)
+{
+ if (condition2)
+ {
+  if(condition3)
+  {
+	
+  }
+  else
+  {
+  }
+ else
+ {
+ }
+else
+{
+}
+
+example code:
+=============
+import java.util.*;
+class Demo3
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int exam1,exam2;
+System.out.println("Enter exam1 marks");
+exam1=s.nextInt();
+
+if(exam1>80)
+{
+System.out.println("Enter exam2 marks");
+exam2=s.nextInt();
+	if(exam2>80)
+	System.out.println("passed");
+	else
+	System.out.println("Failed");
+}
+else
+System.out.println("Failed");
+} 
+}
+
+============================================================
+User accessing a machine..
+this machine gives coffee, tea , milk, 
+green tea, lemon tea
+etc.
+the user need to press the corresponding button to get
+the items required.
+
+1 - Tea
+2 - Coffee
+3 - Milk
+4 - Green tea
+5 - Lemon tea
+
+== when we need to compare multiple choices in the program
+then we need to use cascading if..else 
+statements
+
+syntax:
+if(condition1)
+//statements
+else if(condition2)
+//statements
+.
+.
+.
+else if(condition-n)
+//statements
+else
+//statements
+
+=========================================================
+example code:
+=============
+import java.util.*;
+class Demo3
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+int choice;
+System.out.println("Enter your choice");
+choice=s.nextInt();
+if(choice==1)
+System.out.println("Tea will be served");
+else if(choice==2)
+System.out.println("Coffee will be served");
+else if(choice==3)
+System.out.println("Milk will be served");
+else if(choice==4)
+System.out.println("Green tea will be served");
+else if(choice==5)
+System.out.println("Lemon will be served");
+else
+System.out.println("water will be served");
+} 
+}
+
+Enter your choice: 12
+
+== Replace cascading if..else statement with
+ switch case:
+
+Syntax:
+
+switch (value)
+{
+case value1:
+//statements
+break;
+case value2:
+//statements
+break;
+.
+.
+case value-n:
+//statements
+break
+default:
+//statements 
+break;
+}
+
+Example code:
+=============
+import java.util.*;
+
+
+class Demo3
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int choice;
+System.out.println("Enter your choice");
+choice=s.nextInt();7
+
+switch(choice)
+{
+case 1:
+System.out.println("Tea");
+break;
+case 2:
+System.out.println("coffee");
+break;
+case 3:
+System.out.println("Milk");
+break;
+case 4:
+System.out.println("Greentea");
+break;
+case 5:
+System.out.println("Lemon Tea");
+break;
+default:
+System.out.println("Water");
+
+}
+} 
+}
+
+Summary:
+today we had learnt about various decision making
+statements:
+1. simple if .. statements
+2. if..else statements
+3. nested if..else
+4. cascading if..else
+5. switch case statements
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

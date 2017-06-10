@@ -1,0 +1,26 @@
+package mem;
+
+	
+		
+		public class TestClass {
+			static void mem1(){
+				int x=0;
+				int y=0;
+				while(x<10){
+				y++;
+				System.out.println(y);
+				x++;}
+				System.out.println(y);
+								}
+		
+		public static void main(String[] args)  {
+			
+	mem1();
+		}
+		
+		
+		}
+
+
+
+

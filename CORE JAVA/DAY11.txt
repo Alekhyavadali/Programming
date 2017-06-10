@@ -1,0 +1,281 @@
+Module-7:
+=========
+Generics and Collections:
+=========================
+
+Generics - is the process of declaring a generic datatype
+which can accept any datatype of values
+
+class Demo 
+{
+void display( int a)
+{ 
+System.out.println(a);
+}
+void display( float b)
+{ 
+System.out.println(b);
+}
+void display( char c)
+{ 
+System.out.println(c);
+}
+}
+class Demo11
+{
+public static void main(String args[])
+{
+Demo d = new Demo();
+d.display(1);
+d.display(2.3f);
+d.display('V');
+}
+}
+syntax:
+
+class classname<T>
+{
+void methodname(T a)
+{
+
+}
+}
+
+Example code:
+=============
+
+class Product<T>
+{
+void display(T a)
+{
+System.out.println(a);
+}
+}
+
+class Demo12
+{
+public static void main(String[] args)
+{
+Product p=new Product();
+p.display(10);
+p.display("welcome");
+p.display(13.4F);
+}
+}
+
+Example code : 02:
+==================
+class Customer<T>
+{
+void print(T name,T dept,T id,T marks)
+{
+System.out.println(name+" "+dept+" "+id+" "+marks);
+}
+}
+
+
+class Demo12
+{
+public static void main(String[] args)
+{
+Customer c=new Customer();
+c.print("Arun","IT",101,90.3F);
+}
+}
+
+The main purpose of learning generics to understand
+and use it in the concept of collections.
+
+WHY COLLECTIONS?
+
+What are the disadvantages of using an array?
+
+1. size of the array is fixed.
+
+int[] a=new int[10]; 10 is the fixed size
+
+Two problems:
+a. if size is exceeded, then out of range problem
+b. if the no.of.elements stored is lesser than size of
+ the
+array then memory goes waste.
+
+2. inserting/deleting the data is complex. because it
+requires reshuffling of the data.
+
+Sorting the data is also complex.
+
+10 20 30    50 60
+0  1  2  3  4  5
+
+Solutions:
+===========
+1.Do not allocate the memory in prior.
+
+when element comes , allocate memory..
+when element is removed ,deallocate memory..
+
+2. make insert/delete/sort operations easier.
+
+This can be achieved using the concept of "Collections"
+
+Collections:
+============
+Collections are used to manage the memory 
+dynamically,by allocating memory when items are added
+and deallocating memory when items are removed.
+
+In additions, collections can store any type of data.
+[Heterogenous]
+
+Collections are implemented using java.util packages.
+
+Collections are implemented using Predefined classes are :
+a. ArrayList
+b. Deque
+c. Set
+d. HashMap
+
+ArrayList:
+=========
+ArrayList is a class used to add multiple data items.
+this data items can be of a hetergenous[differnet]
+ values type.
+
+Example code:
+
+import java.util.*;
+class Demo12
+{
+public static void main(String[] args)
+{
+ArrayList a=new ArrayList();
+a.add(10);
+a.add(24);
+a.add("NIIT");
+a.add(34.3F);
+a.add('C');
+System.out.println(a);
+
+a.remove("NIIT");
+System.out.println(a);
+}
+}
+
+-- if we want to restrict the arraylist to store
+only a particular type of data. 
+-- in this case, we can apply the concept of Generics.
+
+
+import java.util.*;
+class Demo12
+{
+public static void main(String[] args)
+{
+ArrayList<String> a=new ArrayList<String>();
+
+a.add("Grapes");
+a.add("Apple");
+a.add("Carrot");
+System.out.println(a);
+}
+}
+
+2. set
+=======
+Set is a class used to arrange data in a sorted order.
+Note: the default datatype of the set is string.
+
+
+Example code: 01
+================
+
+import java.util.*;
+class Demo12
+{
+public static void main(String[] args)
+{
+Set s=new TreeSet();
+s.add("Kiran");
+s.add("Abhishek");
+s.add("Naveen");
+System.out.println(s);
+}
+}
+
+output:
+[Abhishek, Kiran, Naveen]
+
+if we want to store any other type of data,
+
+Set<Integer> s=new TreeSet<Integer>();
+
+c. Deque:
+=========
+This support two structures.
+It can act as stack also as queue.
+
+Stack - push,pop
+queue - add,remove
+
+
+import java.util.*;
+class Demo12
+{
+public static void main(String[] args)
+{
+Deque d=new ArrayDeque();
+d.push(10);
+d.push(20);
+d.push(30);
+
+System.out.println("adding all elements...");
+System.out.println(d);
+d.pop();
+System.out.println("After removing...");
+System.out.println(d);
+}
+}
+
+output:
+
+adding all elements...
+[30, 20, 10]
+After removing...
+[20, 10]
+
+==The above code represent the concept of the stack.
+In stack,
+push - inserting the data
+pop-deleting the data.
+
+both inserting and deleting the data will happen at
+the top of the stack.
+
+Example code:
+=============
+
+import java.util.*;
+class Demo12
+{
+public static void main(String[] args)
+{
+Deque d=new ArrayDeque();
+d.add(10);
+d.add(20);
+d.add(30);
+System.out.println("adding all elements...");
+System.out.println(d);
+d.remove();
+System.out.println("After removing...");
+System.out.println(d);
+}
+}
+
+output:
+
+
+adding all elements...
+[10, 20, 30]
+After removing...
+[20, 30]

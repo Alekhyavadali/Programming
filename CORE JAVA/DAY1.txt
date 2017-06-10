@@ -1,0 +1,362 @@
+PIJ(COREJAVA SE7)
+---------
+
+Why do we learn a program language?
+1.to create software/application
+2.to do the task easier
+3.to become a developer
+4.to do a specific tasks etc
+
+--- we should be strong enough to 
+understand and learn
+a programming language.
+
+
+Structure of the JAVA Programming code:
+---------------------------------------
+
+import statements;
+package statements;
+
+
+class classname
+{
+public static void main(String[]
+ args)
+{
+
+}
+}
+
+
+class - keyword.
+every java programming code has a
+ class.
+because java is a Object Oriented 
+Programming Language
+
+main - entry point of the 
+applications.
+
+when we execute a program,
+ main is the
+ first line to
+be executed in a program.
+
+After writing a java code, 
+two steps to be done.
+
+1. Compile - to check whether the
+ 
+code or syntax of the 
+program is correct or not.
+
+javac Student.java
+
+2. Run - this will display the 
+output
+ to the user.
+
+java Student
+
+Example code:
+
+class Student
+{
+public static void main(String[]
+ args)
+{
+System.out.println("Welcome to
+ First
+ JAVA Code");
+}
+}
+
+System - namespace, 
+which is responsible for all I/O 
+operations.
+Namespace is a collection of 
+classes.
+
+out - one of the classes of 
+System namespace, which is used
+for displaying output to the user.
+
+println - method to print the 
+text on 
+the screen 
+
+Example 02:
+-----------
+
+
+System(namespace)
+|
+out (class)
+|
+print or println(method)
+
+
+class Employee
+{
+public static void main(String[] args)
+{
+System.out.println("welcome");
+System.out.println("To java 
+    batch");
+}
+}
+
+-----------------------------------------------------
+To save information in a program:
+
+--- we have to use variables.
+
+Variables  - are the names given
+ to 
+the program to store
+data inside it..
+
+
+No1=12,No2=5
+Name="NIIT"
+marks=45.3
+
+-- datatype of the program
+What kind of data that we store 
+in the
+ program
+number, character, point values, 
+string values...
+
+The various datatype available are:
+
+int - for storing numbers
+char - characters
+float and double - storing point values.
+String - for storing words/sentences.
+boolean - for storing true/false values.
+
+int no=5
+char grade='A'
+float marks=43.7F;
+double average=45.7890000;
+String name="Arun";
+boolean result=true;
+
+==========================================================
+class Employee
+{
+public static void main(String[] args)
+{
+int a=5,b=4;
+System.out.println(a+b);
+
+float x=45.3f,y=89.4F;
+System.out.println(x+y);
+
+double d1=45.32,d2=908.4;
+System.out.println(d1*d2);
+
+}
+}
+
+===========================================================
+Rule1:
+the class which contains the main
+ method, in that class name
+only the program has to be saved.
+
+Rule2:
+There can be only one main method
+ in a program
+
+
+Function - is a block of code.. 
+which contains the specific
+logic to executed in a program..
+
+class ATM
+{
+
+void withdraw(){
+
+}
+
+void pinchange(){
+
+}
+
+void balanceenquiry(){
+
+}
+
+}
+
+Rule 3:
+When we create any new classes ,
+other than the class
+which contains main method,
+ the object has to be created.
+
+classname Objname=new classname();
+
+new[operator] - used to allocate 
+the
+ memory.
+
+Example code:
+
+class Calculator
+{
+void addition()
+{
+int a=5,b=10;
+System.out.println(a+b);
+}
+}
+class Employee
+{
+public static void main(String[] args)
+{
+Calculator c=new Calculator();
+c.addition();
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

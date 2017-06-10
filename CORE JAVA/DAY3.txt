@@ -1,0 +1,318 @@
+
+Consider the program below:
+
+class Mobile
+{
+String name="Samsung";
+int qty=12;
+void display()
+{
+System.out.println("the name of the mobile 
+is"+name);
+System.out.println("the qty is"+qty);
+}
+}
+
+class Demo2
+{
+public static void main(String[] args)
+{
+Mobile m=new Mobile();
+m.display();
+}
+}
+
+Understand about the below line:
+
+Mobile 		m=		new 		Mobile();
+
+|		|		|		|
+class		Object		operator	classname
+Name		name		allocate
+				memory
+
+
+() - used for methods/functions.
+
+when we use () for the class name -
+then it will act
+as a special functions are called as
+ constructors.
+
+
+constructors are special functions 
+which are used to 
+allocate memory ,also to intialize all
+ the variables in  a class.
+
+
+
+class Demo2
+{
+public static void main(String[] args)
+{
+int x;
+System.out.println(x);
+}
+}
+when we run the above program, 
+the variable x is not
+intialized.. it gives an error.
+
+class Demo2
+{
+int x;
+public static void main(String[] args)
+{
+Demo2 d=new Demo2();
+System.out.println(d.x);
+}
+}
+but when we run the above code, 
+automatically the value
+is intialized
+output : 0
+
+The above code stands for default constructor..
+when ever we create objects,
+ the default constructor will
+be automatically called, and all the
+ variables of a class
+is initialized..
+
+When we want to create a userdefined 
+constructor.?, yes
+it is possible to create.
+
+code for a user-defined constructor:
+====================================
+class Calculate
+{
+int a,b;
+Calculate(){
+a=60;
+b=34;
+}
+void add()
+{
+System.out.println(a+b);
+}
+}
+class Demo2
+{
+public static void main(String[] args)
+{
+Calculate c=new Calculate();
+c.add();
+}
+}
+
+Rules for creating a user-defined
+ constructor:
+1. constructor name must be same as
+ the class name
+2. it is used only for intializing 
+variables. do not write
+any logic inside constructor.
+3. there can be many constructors in 
+the programs. 
+
+Code for parametrized constructor:
+==================================
+class Calculate
+{
+int a,b;
+Calculate(){
+a=0;
+b=0;
+}
+Calculate(int x,int y){
+a=x;
+b=y;
+}
+void add()
+{
+System.out.println(a+b);
+}
+}
+class Demo2
+{
+public static void main(String[] args)
+{
+Calculate c=new Calculate();
+c.add();
+Calculate c1=new Calculate(10,4);
+c1.add();
+}
+}
+
+output:
+=======
+0
+14
+
+
+Constructor are used for allocating
+ memory.. once after
+the operation gets completed, the memory has
+ to be 
+de allocated..
+so this deallocation happens using 
+destructor..
+
+The process of automatically cleaning the 
+memory 
+resources, once the program task is 
+completed.. called
+as Garbage Collections.
+
+==========================================================
+
+import java.util.*;
+
+class Demo2
+{
+public static void main(String[] args)
+{
+int a,b;
+Scanner s=new Scanner(System.in);
+System.out.println("Enter the first number");
+a=s.nextInt();
+System.out.println("Enter the second number");
+b=s.nextInt();
+int res=a+b;
+System.out.println(res);
+}
+}
+
+==========================================================
+getting the string value from the user:
+
+import java.util.*;
+
+class Demo2
+{
+public static void main(String[] args)
+{
+
+String name;
+String dept;
+int id;
+
+Scanner s=new Scanner(System.in);
+
+System.out.println("Enter the name");
+name=s.next();
+System.out.println("Enter the dept");
+dept=s.next();
+System.out.println("Enter ID");
+id=s.nextInt();
+
+System.out.println(name+ " "+dept+" "+id);
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

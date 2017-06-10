@@ -1,0 +1,29 @@
+package interfaces;
+class Car {
+	  
+	 public void goFast(){
+		 System.out.println("too slow"); 
+	 }
+ }
+
+ class Motor extends Car
+ {
+	public void goFast(){
+		 System.out.println("too fast");
+	 }
+ 
+ public static void main(String[] args)
+ {
+	 String str=null;
+	 if(str instanceof Object)
+	 {
+		 System.out.println("yes");
+	 }else{System.out.println("no");}
+	Car m=new Motor();
+	m.goFast();
+	int i=1;
+	if((4>i)^((++i +2)>3))i++;
+	if((4>++i)^!(++i==5))i++;
+	 System.out.println(i);
+ }
+ }

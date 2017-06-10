@@ -1,0 +1,252 @@
+Chapter 7 Continued..
+---------------------------
+About Collections:
+
+There are 4 important classes of Collections:
+
+1. ArrayList
+2. Set
+3. Dequeue
+4. HashMap
+
+HashMap stores the data as a key-value pairs.
+
+{key=value}
+
+h.put(key,value}
+
+h.put("ID","1001");
+h.put("Name","Dinesh");
+
+Example code:
+==========
+import java.util.*;
+class Demo13
+{
+public static void main(String[] args)
+{
+HashMap h=new HashMap();
+h.put("ID","1001");
+h.put("Name","Dinesh");
+h.put("Dept","IT");
+System.out.println(h);
+}
+}
+
+output:
+
+{Name=Dinesh, Dept=IT, ID=1001}
+
+Example code: 02:
+=============
+import java.util.*;
+
+class Demo13
+{
+public static void main(String[] args)
+{
+HashMap<String,Integer> h=new HashMap<String,Integer>();
+h.put("Mark1",34);
+h.put("Mark2",100);
+h.put("Age",24);
+System.out.println(h);
+}
+}
+
+-- to print a particular data from a hashmap ,
+use the code as below :
+
+System.out.println( h.get("Age") );
+
+ArrayList				Set	
+ArrayList a=new ArrayList();		Set s=new TreeSet();	set<Integer> s=new  TreeSet<Integer>();p
+a.add(12);				s.add("NIIT");
+a.add("welcome");			s.add("arun");
+a.add(45.3);			s.add("venkat");
+
+output:				output:
+[12,welcome,45.3]			[arun,NIIT,Venkat]
+
+Deque:				HashMap
+=====
+Deque d=new ArrayDeque();		HashMap h=new HashMap();
+d.add(10);		d.push(10);		h.put("ID","1001");
+d.add(20);		d.push(20);		h.put("Name","Dinesh");
+output:		output:		
+[10,20]		[20,10]		output:
+d.remove();	d.pop();		{Name=Dinesh,ID=1001}
+output:		output:
+[20];		[10]
+
+To get input from the user and store them into a collections:
+=========================================
+import java.util.*;
+class Demo13
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+String name,dept;
+int salary;
+System.out.println("Enter your name,dept and Salary");
+name=s.next();
+dept=s.next();
+salary=s.nextInt();
+
+ArrayList a=new ArrayList();
+a.add(name);
+a.add(dept);
+a.add(salary);
+System.out.println(a);
+
+Deque d=new ArrayDeque();
+d.add(name);
+d.add(dept);
+d.add(salary);
+System.out.println(d);
+}
+}
+
+How to store the class Object data into a collections?
+=====================================
+import java.util.*;
+class Employee
+{
+int id;
+String name;
+public Employee(int i,String n){
+id=i;
+name=n;
+}}
+class Demo14
+{
+public static void main(String[] args)
+{
+Employee e1=new Employee(1001,"Yuvan");
+Employee e2=new Employee(1002,"Preethi");
+Employee e3=new Employee(1003,"Jagan");
+
+ArrayList a=new ArrayList();
+a.add(e1); a.add(e2); a.add(e3);
+
+Iterator i=a.iterator();
+while(i.hasNext())
+{
+Employee e=(Employee)i.next();
+System.out.println(e.id+ " "+e.name);
+}}
+}
+
+To print the data inside the Object,we can use 
+Iterator class. 
+hasNext() - used to check whether the record exists 
+or not.
+if the record exists , then we can access the record 
+using next() methods.
+
+How to sort data in collections?
+=====================
+How to arrange the Object data?
+
+There are two interfaces used to arrange the Object data.
+Comparable Interface - used to sort Object data based on only 
+one value.
+Comparator Interface - used to sort Object data based on multiple
+values.
+
+Comparable Interface:
+===============
+import java.util.*;
+class Library implements Comparable<Library>
+{
+int bookid,qty;String name;
+Library(int i,int q,String n){
+bookid=i;
+qty=q;
+name=n;
+}
+public int compareTo(Library p){
+if(p.bookid==bookid) {return 0;}
+else if (p.bookid>bookid) {return 1;}
+else {return -1;}
+}
+}
+class Demo14
+{
+public static void main(String[] args)
+{
+Library l1=new Library(1855,10,"JAVA");
+Library l2=new Library(9134,9,"C++");
+Library l3=new Library(4501,21,"ALGORITHM");
+Library l4=new Library(8905,23,"C#");
+
+ArrayList  a=new ArrayList();
+a.add(l1); a.add(l2); a.add(l3); a.add(l4);
+
+Collections.sort(a);
+
+Iterator i =a.iterator();
+while(i.hasNext()){
+Library l=(Library)i.next();
+System.out.println(l.bookid+ " "+l.qty+" "+l.name);
+}
+
+}
+}
+
+Comparator interface:
+===============
+import java.util.*;
+class Library 
+{
+int bookid,qty;String name;
+Library(int i,int q,String n){
+bookid=i;
+qty=q;
+name=n;
+}}
+
+class NameSort implements Comparator<Library>
+{
+public int compare(Library p1,Library p2){
+return p1.name.compareTo(p2.name);
+}
+}
+class QtySort implements Comparator<Library>
+{
+public int compare(Library p1,Library p2){
+if(p1.qty==p2.qty){return 0;}
+else if (p2.qty<p1.qty){return 1;}
+else {return -1;}
+}
+}
+class Demo14
+{
+public static void main(String[] args)
+{
+Library l1=new Library(1855,10,"JAVA");
+Library l2=new Library(9134,9,"C++");
+Library l3=new Library(4501,21,"ALGORITHM");
+Library l4=new Library(8905,23,"C#");
+
+ArrayList  a=new ArrayList();
+a.add(l1); a.add(l2); a.add(l3); a.add(l4);
+
+Collections.sort(a,new NameSort());
+
+Iterator i =a.iterator();
+while(i.hasNext()){
+Library l=(Library)i.next();
+System.out.println(l.bookid+ " "+l.qty+" "+l.name);
+}
+}
+}
+
+Comparable interface -compareTo() method
+Comparator interface - compare() method.
+
+public int compareTo(Object){
+}
+public int compare(Object, Object){
+}
+

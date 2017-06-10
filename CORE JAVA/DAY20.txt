@@ -1,0 +1,350 @@
+Chapter 12:
+=========
+Threads:
+=======
+Dictionary meaning : a long thind strand of 
+                 cotton
+		a piece of writing.
+
+Technically : used in Operating Systems.
+
+OS - allocates resources and handles task.
+whether OS will do only one task or multiple
+ task?
+handle multiple task..
+
+whether all these multiple task are handled 
+only one processor or by a
+multiprocessor?
+multiprocessor
+
+it treats every activity as Thread.
+Thread - execution of activity.
+
+OS is having the ability to do multiple task with a help of a processor.
+
+The same technique , can we apply in the program.. so that the program
+can also can handle multiple activities?
+
+why program has to handle multiple task?
+because to create a efficient game applications.
+
+game - score is updated, actor is moving,
+ weapons are cmng,
+points are displayed, music in the background etc..
+all these activites are happening one by one?  - no
+all the activities are happening parallely.
+
+with the help of the concept of Threads.
+
+Threads is the path of the execution of a program.
+we can create threads in two ways:
+1. extending thread class.
+2. implementing runnable interface.
+
+class Product extends Thread
+{
+public void run(){
+for(int i=0;i<=5;i++)
+System.out.println(i);
+}
+}
+
+class Demo22
+{
+public static void main(String[] args)
+{
+Product p=new Product();
+p.start();
+}
+}
+
+Thread Life cycle:
+To start a thread, we need to call the 
+start() method. This will make a thread
+to run.
+After the thread is started, it can made 
+stopped using interrupt() method.
+After a thread is started , we can make a 
+thread to sleep for some time using
+sleep() method.
+
+
+class Product extends Thread
+{
+public void run(){
+try{
+for(int i=0;i<=5;i++)
+{
+Thread.sleep(5000);
+System.out.println(i);
+}}
+catch(Exception e){}
+}
+}
+
+class Demo22
+{
+public static void main(String[] args)
+{
+Product p=new Product();
+p.start();
+}
+}
+
+syntax of sleep method:
+Thread.sleep(milliseconds);
+
+class Product extends Thread
+{
+void even(){
+for(int i=0;i<=10;i=i+2)
+System.out.println(i);
+}
+void display(){
+System.out.println("welcome to threads concept");
+}
+public void run(){
+even();
+display();
+}
+}
+class Demo22
+{
+public static void main(String[] args)
+{
+Product p=new Product();
+p.start();
+}
+}
+
+Stopping a thread:
+===============
+
+class Product extends Thread
+{
+static Thread t;
+public void run(){
+try{
+for(int i=0;i<=10;i=i+2)
+{
+Thread.sleep(5000);
+System.out.println(i);
+if(i==4)
+t.interrupt();
+}}
+catch(Exception e){}
+}}
+class Demo22
+{
+public static void main(String[] args)
+{
+Product.t = new Thread(new Product());
+Product.t.start();
+}
+}
+
+
+========================================================
+how do we invoke multiple threads in a program?
+=====================================
+Class Table{  
+  
+void printTable(int n){//method not synchronized  
+   for(int i=1;i<=5;i++){  
+     System.out.println(n*i);  
+     try{  
+      Thread.sleep(400);  
+     }catch(Exception e)
+    {System.out.println(e);}  
+   }  
+  
+ }  
+}  
+  
+class MyThread1 extends Thread{  
+Table t;  
+MyThread1(Table t){  
+this.t=t;  
+}  
+public void run(){  
+t.printTable(5);  
+}  
+  
+}  
+class MyThread2 extends Thread{  
+Table t;  
+MyThread2(Table t){  
+this.t=t;  
+}  
+public void run(){  
+t.printTable(100);  
+}  
+}  
+  
+class Demo22{  
+public static void main(String args[]){  
+Table obj = new Table();//only one object  
+MyThread1 t1=new MyThread1(obj);  
+MyThread2 t2=new MyThread2(obj);  
+t1.start();  
+t2.start();  
+}  
+}  
+the above program contains multiple threads, 
+output as below :
+
+output 1:
+
+E:\>java Demo22
+5
+100
+10
+200
+300
+15
+400
+20
+500
+25
+
+output 2:
+
+E:\>java Demo22
+5
+100
+10
+200
+15
+300
+20
+400
+500
+25
+output 3:
+
+E:\>java Demo22
+100
+5
+10
+200
+300
+15
+20
+400
+25
+500
+-- every time we could find the output is
+ different. because the thread are switching
+
+between one activity to another activity. so 
+it is not able to decide which one
+execute .
+
+we need to make the output as synchronized.
+execute the activity one by one.
+
+//example of java synchronized method  
+class Table{  
+ synchronized void printTable(int n){//synchronized method  
+   for(int i=1;i<=5;i++){  
+     System.out.println(n*i);  
+     try{  
+      Thread.sleep(400);  
+     }catch(Exception e){System.out.println(e);}  
+   }  
+  
+ }  
+}  
+  
+class MyThread1 extends Thread{  
+Table t;  
+MyThread1(Table t){  
+this.t=t;  
+}  
+public void run(){  
+t.printTable(5);  
+}  
+  
+}  
+class MyThread2 extends Thread{  
+Table t;  
+MyThread2(Table t){  
+this.t=t;  
+}  
+public void run(){  
+t.printTable(100);  
+}  
+}  
+  
+public class Demo22{  
+public static void main(String args[]){  
+Table obj = new Table();//only one object  
+MyThread1 t1=new MyThread1(obj);  
+MyThread2 t2=new MyThread2(obj);  
+t1.start();  
+t2.start();  
+}  
+}
+
+output:
+       5
+       10
+       15
+       20
+       25
+       100
+       200
+       300
+       400
+       500
+        
+What are the problems occurs in multithreading?
+1. Deadlock
+2. starvation
+3. livelock
+
+Deadlock - when multiple resources are 
+depending on each other resource.
+Thread1 - Resource1
+Thread2- Resource2
+Thread1 tries to access Resource2 
+Thread2 tries to access Resource1
+
+Jebus - Pencil
+Prakash - Compass 
+Both are waiting for each other resources.
+
+Starvation - thread is unable to gain the 
+regular access to the shared resources
+and unable to make progress.
+
+Vijji - has to reach the class at 3.00pm
+but she reaches at 3.15 pm
+
+Livelock - thread often act in response to 
+other threads.
+
+thread 1 - execute and give the output1
+thread 2 - gets the output from thread1 and 
+give the output2
+thread 3 - gets the output from thread and
+ give output3
+
+========================================================
+
+int i;
+
+Thread t1=new Thread();
+Thread t2=new Thread();
+Thread t2=new Thread();
+
+Whether all these thread Object will share 
+same copy of i variable or
+different copy?
+different copy..
+
+if we want the same copy to used by all
+ thread Objects.
+
+volatile int i;

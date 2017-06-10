@@ -1,0 +1,221 @@
+Module - 8 :
+----------------
+String   Processing :
+==============
+1. Pass the string data through a command prompt.
+
+public static void main(String[] args){
+
+}
+
+String[] args - it represents a string array. the 
+data is passed to a programs as a string of 
+arguments.
+
+int - nextInt(), float - nextFloat()....
+if it is a string value - next()
+
+how to pass the value to a program through command prompt at run time itself?
+
+class Demo15
+{
+public static void main(String[] args)
+{
+System.out.println(args[0]);
+System.out.println(args[1]);
+}
+}
+
+When we run the above code :
+javac Demo15.java
+java Demo15 Ramu Faculty
+
+While running the program itself , two values are passed. [Ramu and Faculty]
+These values are stored into a command line arguments data.
+
+Example code : 02:
+===============
+class Demo15
+{
+public static void main(String[] a)
+{
+System.out.println("The no of arguments="+a.length);
+for(int i=0;i<a.length;i++)
+System.out.println(a[i]);
+}
+}
+
+2. To pass the data as a properties 
+using variables:
+========================================
+class Demo15
+{
+public static void main(String[] a)
+{
+String name=System.getProperty("x");
+System.out.println(name);
+}
+}
+
+output:
+E:\>javac Demo15.java
+E:\>java -Dx=Karthik Demo15
+Karthik
+
+3. how to print data?
+================
+we can print data using 
+System.out.println("Welcome");
+
+PrintWriter 
+-- also used to print output.
+main uses:
+1. while using IDE [Eclipse,NetBeans] etc.
+2. with files concepts.
+
+import java.io.*;
+class Demo15
+{
+public static void main(String[] a)
+{
+PrintWriter pw=new PrintWriter(System.out,true);
+pw.println("Welcome");
+}
+}
+
+PrintWriter is also used to format data.
+
+Enter Two numbers:
+12
+8
+
+The sum of 12 and 8 is 20
+
+Enter name : Arun
+Enter Dept : IT
+
+Arun belongs to the dept IT
+
+Example code:
+===========
+import java.io.*;
+class Demo15
+{
+public static void main(String[] a)
+{
+int x=10,y=5,res;
+res=x+y;
+PrintWriter pw=new PrintWriter(System.out,true);
+pw.printf("The sum of %d and %d is %d",x,y,res);
+String name="Arun";
+int id=1001;
+pw.printf("ID %d belongs to %s",id,name);
+}
+}
+
+%s - Strings, %d - integers, %c - character and 
+%f - float values.
+
+4. String operations:
+=================
+concat(), length(), toUpperCase(), toLowerCase(), substring() - chapter2
+equals()
+
+Special classes : StringBuffer, 
+StringBuilder
+Functions : contains(),replace(), 
+append(),insert()
+
+
+class Demo15
+{
+public static void main(String[] a)
+{
+StringBuilder s=new StringBuilder(40);
+s.append("this month is April");
+System.out.println(s);
+}
+}
+
+-- if we want to add data to a particular position,
+then we can use.. s.insert(0,2016);
+
+output:
+2016 this month is april
+
+Example code for contains() and replace():
+=================================
+
+class Demo15
+{
+public static void main(String[] a)
+{
+String s="welcome to java batch";
+if (s.contains("java"))
+System.out.println("Found..");
+String res=s.replace("java","java7");
+System.out.println(res);
+}
+}
+
+another code:
+===========
+
+class Demo15
+{
+public static void main(String[] a)
+{
+String s="Student id is 1001";
+if (s.contains("1001"))
+System.out.println("Found");
+}
+}
+
+5. using Split in Strings:
+====================
+How to split the data in a strings?
+
+class Demo15
+{
+public static void main(String[] a)
+{
+String details="Arun,NH,Arun@gmail.com,JAVA,
+9876543210,26";
+String[] h=details.split(",");
+for(String x : h)
+System.out.println(x);
+}
+}
+
+Another code :
+===========
+class Demo15
+{
+public static void main(String[] a)
+{
+String fruits="Apple:Grapes:Banana:Pineapple:Watermelon";
+String[] result=fruits.split(":");
+for (String r:result)
+System.out.println(r);
+}
+}
+
+we can also split data, using 
+Stringtokenizer classes.
+
+import java.util.*;
+class Demo15
+{
+public static void main(String[] a)
+{
+String fruits="Apple:Grapes:Banana:Pineapple:Watermelon";
+StringTokenizer s=new 
+StringTokenizer(fruits,":");
+while(s.hasMoreTokens())
+System.out.println(s.nextToken());
+}
+}
+
+
+
+

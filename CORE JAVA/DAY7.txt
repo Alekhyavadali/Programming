@@ -1,0 +1,756 @@
+Chapter -3 :
+============
+
+class Calculate
+{
+int x=7;
+}
+
+class Addition
+{
+void sum()
+{
+System.out.println(x+5);//12
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Addition a = new Addition();
+a.sum();
+}
+}
+
+When we compile the above program
+Error: variable x is not found
+
+understanding: the variable of 
+one 
+class cannot be used
+by other classes.
+
+classes must follow the concept of 
+reusability.
+
+Reusability - information present 
+inside one class can
+be used by multiple classes.
+
+How to achieve the concept of reusability in classes?
+=====================================================
+
+Inheritance - the process in 
+which the features
+[variables/methods]of one class
+ is reused by other classes.
+
+one class - Parent/Super/Base
+Other classes - child/Sub/Derived
+
+class child extends parent
+{
+
+}
+
+Basic Program of Inheritance:
+============================
+
+class Calculate
+{
+int x=10;
+}
+
+class Addition extends Calculate
+{
+void sum()
+{
+System.out.println(x+5);
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Addition a=new Addition();
+a.sum();
+}
+}
+
+=================================================
+Another example code of inheritance:
+====================================
+
+class Employee
+{
+int id;
+String name;
+}
+
+class Manager extends Employee
+{
+String dept="IT";
+void display(){
+name="Niit";
+id=1001;
+System.out.println("The name of
+ the manager is"+name);
+System.out.println("The ID of the
+ manager is"+id);
+System.out.println("The dept of 
+the manager is"+dept);
+}
+}
+
+class Programmer extends Employee
+{
+String domain="java";
+void display(){
+name="Dinesh";
+id=1002;
+System.out.println("The name of 
+the Programmer is"+name);
+System.out.println("The ID of the
+ Programmer is"+id);
+System.out.println("The domain is"
++domain);
+}
+}
+
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Manager m=new Manager();
+m.display();
+Programmer p=new Programmer();
+p.display();
+}
+}
+
+Given the program below :
+=========================
+
+class Addition
+{
+int a=10,b=5;
+void sum()
+{
+System.out.println("The sum is"+
+(a+b));
+}
+}
+class Subtraction
+{
+int x=10,y=5;
+void difference()
+{
+System.out.println("the value is"+
+(x-y));
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Addition a=new Addition(); 
+a.sum();
+Subtraction s=new Subtraction(); 
+s.difference();
+}
+}
+
+1. how many numbers are added/
+Subtracted here? - 2
+2. how many variables are used 
+here?
+
+4 variables - a,b,x,y
+
+=======================================================
+Now in the below program , we are using only two variables
+which are re-used.
+
+
+class Calculate
+{
+int a=10,b=5;
+}
+
+
+class Addition extends Calculate
+{
+void sum()
+{
+System.out.println("The sum is"+
+(a+b));
+}
+}
+class Subtraction extends 
+Calculate
+{
+void difference()
+{
+System.out.println("the value is"+
+(a-b));
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Addition a=new Addition(); a.sum();
+Subtraction s=new Subtraction(); 
+s.difference();
+}
+}
+
+How to use methods/variables of the parent classes?
+=========================================
+super keyword when used in variables - 
+used to 
+different parent class variable from the 
+child class 
+variables if they have a same name.
+
+Example code for Super Variables:
+=================================
+
+class Calculate
+{
+int a=5;
+}
+
+class Addition extends Calculate
+{
+void sum(int a){
+System.out.println(super.a+a);
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Addition a=new Addition();
+a.sum(12);
+}
+}
+
+Super keyword- when used in methods:
+====================================
+
+
+class Calculate
+{
+float pi=3.14F;
+void display(){
+System.out.println("The value of PI 
+is"+pi);
+}
+}
+
+class Area extends Calculate
+{
+void compute(){
+System.out.println(pi*5*5);
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Area a=new Area();
+a.display();
+a.compute();
+}
+}
+
+--see the main method..
+by the using the child class Object 
+Area "a", we are
+calling the parent class methods also.
+because the rule is that: Child class 
+Objects can access
+the methods of the parent.
+
+In the above case, parent class method and child class
+method names are different.
+suppose when we give same name for the parent as well
+to child, then only the child class method 
+will be called.
+
+To invoke the parent class methods also, we need to use
+super.methodname();
+
+class Calculate
+{
+float pi=3.14F;
+void display(){
+System.out.println("The value of PI is"+pi);
+}
+}
+
+class Area extends Calculate
+{
+void display(){
+super.display();
+System.out.println(pi*5*5);
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Area a=new Area();
+a.display();
+}
+}
+
+We can also use super keyword to 
+access the constructors
+of the parent classes.
+
+
+class Calculate
+{
+float pi;
+Calculate(){
+pi=3.14F;
+}
+}
+
+class Area extends Calculate
+{
+int r;
+Area(){
+r=10;
+}
+void display(){
+System.out.println(pi*r*r);
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Area a=new Area();
+a.display();
+}
+}
+
+-- in the above code, parent class
+ constructor will
+be invoked first and then it will 
+call the child class
+constructors.
+
+
+class Class1
+{
+int x;
+Class1(int a){
+x=a;
+}
+}
+
+class Class2 extends Class1
+{
+int y;
+Class2(int a,int b){
+super(a);
+y=b;
+}
+void sum()
+{
+System.out.println(x+y);
+}
+}
+
+class Demo7
+{
+public static void main(String[] args)
+{
+Class2 c=new Class2(10,8);
+c.sum();
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

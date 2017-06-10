@@ -1,0 +1,916 @@
+Chapter - 5:
+============
+Objectives:
+
+1.Generalization  - Abstract class and methods.
+2.Static variables and methods
+3.Final Classes,Variables and methods.
+4.Enumerations
+5.Design patterns.
+
+Generalization:
+===============
+make it simple
+applying generic or ordinary features.
+General statements.
+Standard process instead of a complicated one.
+
+Parent class - contains some methods/variables.
+child class - will access it.
+
+Parent Class - has a rule/standard process.
+child class - should follow the same standard.
+
+These kind of rules are called as 
+Abstract methods/
+abstract classes.
+
+Example:
+In ATM Transactions, what is the process name
+ of taking a money?
+
+WithDraw
+
+In Facebook/gmail, what is the button that we click
+to enter into FB/gmail?
+
+Login
+
+
+WithDraw = a common standard is followed for all types
+of Bank.
+
+Arun - code:			Ramu-Code
+
+class ICICI			class union
+{				{
+void withdraw()			void takemoney()
+{				{
+}				}
+}				}
+
+Sachin - Code:
+
+class SBI
+{
+void extractmoney()
+{
+
+}
+}
+
+=====================Parent class======
+
+abstract class Bank
+{
+abstract void withdraw();
+}
+
+Abstract methods - the methods which are
+ empty i.e
+which do not have a logic/method body are
+ called as abstract methods.
+
+Abstract class - the class which contains the 
+abstract methods are called Abstract classes.
+these classes act as a parent class.
+
+Example code 01:
+===============
+
+abstract class Bank
+{
+abstract void withdraw();
+}
+
+class ICICI extends Bank
+{
+void withdraw()
+{
+System.out.println("ICICI Transactions");
+}
+}
+
+class SBI extends Bank
+{
+void withdraw()
+{
+System.out.println("SBI Transactions");
+}
+}
+
+class Demo10
+{
+public static void main(String[] args)
+{
+ICICI i=new ICICI();
+i.withdraw();
+SBI s=new SBI();
+s.withdraw();
+}
+}
+
+Example code 02:
+================
+
+abstract class Mobile
+{
+abstract void call();
+abstract void message();
+}
+
+class Samsung extends Mobile
+{
+void call()
+{
+System.out.println("Calling...");
+}
+void message()
+{
+System.out.println("messaging..");
+}
+}
+
+class Demo10
+{
+public static void main(String[] args)
+{
+Samsung c=new Samsung();
+c.call();
+c.message();
+}
+}
+
+Rules of Abstract methods/classes:
+==================================
+
+1. Abstract methods cannot be instanitiated.
+ie. we cannot create Objects of the abstract
+ classes.
+
+2. Abstract methods has to be inside only 
+the abstract classes.
+
+3. Abstract methods should be declared, not
+defined.
+
+4. Abstract classes can have abstract 
+methods as well as normal methods.
+
+We can create Object for the abstract class
+ as below:
+
+Mobile m=new Samsung(); //run time polymorphism
+m.display();
+m.call();
+m.message();
+
+===========================================================
+
+Static variables and methods:
+=============================
+class Calculate
+{
+int i;
+void display(){
+i++;
+System.out.println(i);
+}
+}
+class Demo10
+{
+public static void main(String[] args)
+{
+System.out.println("First Object..");
+Calculate c1=new Calculate();
+c1.display();
+c1.display();
+c1.display();
+
+System.out.println("Second Object..");
+Calculate c2=new Calculate();
+c2.display();
+c2.display();
+}
+}
+
+In the above code,output is as below:
+
+First Object..
+1
+2
+3
+Second Object..
+1
+2
+
+-- value is maintained across different Objects..
+if we use static int i;
+
+then output is as below:
+
+First Object..
+1
+2
+3
+Second Object..
+4
+5
+
+output is maintained across every Objects..
+
+Static variables - are used to retain the values
+of the variables across multiple Objects. ie.
+ only one
+copy of the variables will be created.
+
+Note:
+The reason for using static in main method is :
+The main method can be called directly even
+ without creating the Objects.
+
+We can use static for methods also.. 
+Note:
+1. Inside static methods, only static variables can
+be used.
+2. static methods can be directly called by using the
+class name.
+
+class Calculate
+{
+static int i;
+static void display(){
+i++;
+System.out.println(i);
+}}
+
+class Demo10
+{
+public static void main(String[] args)
+{
+Calculate.display();
+Calculate.display();
+Calculate.display();
+}
+}
+
+
+===========================================================
+
+3. Final Classes,methods and variables.
+=======================================
+
+Case (i):
+
+Final Variables - if we dont want to modify 
+the value of a variables, such variables are 
+declared with Final Keyword.
+
+class Calculate
+{
+final float pi=3.14F;
+void display()
+{
+System.out.println(pi*3);
+}
+}
+
+In the above , if we assign again pi=3.28,
+ this will give an error that final variable
+ value cannot be changed.
+
+case (ii):
+
+Final methods : if we dont want the child 
+class to override the methods of the parent 
+class,then final methods are used.
+
+class Calculate
+{
+final void compute()
+{
+System.out.println("Welcome");
+}
+}
+
+class Demo extends Calculate
+{
+void compute()
+{
+System.out.println("Child class");
+}
+}
+
+when we execute the above code, the error is as 
+below :
+
+Demo10.java:12: error: compute() in Demo
+ cannot override compute() in Calculate
+void compute()
+     ^
+  overridden method is final
+1 error
+
+
+case (III):
+===========
+
+Final Classes - If we dont want a class to be 
+extended by other classes.. in this case, 
+Final classes are used.
+
+final class ATMServer
+{
+void display()
+{
+System.out.println("welcome");
+}
+}
+
+when we say ,
+class customer extends ATMServer
+{
+
+}
+
+error: cannot inherit the final class.
+
+but we can create the Object for the final 
+classes:
+
+ATMServer a=new ATMServer();
+a.display();
+
+4. Enumerations:
+================
+--used to list a set of values 
+which can be fixed in a program
+
+colors of a rainbow - VIBGYOR
+planets 
+months - jan,feb,mar,..... dec
+days - sun,mon,...sat
+blood groups - 
+alphabets etc
+
+example code 01:
+================
+
+
+enum dept { IT,CSE,EEE,ECE,AERO };
+
+class Demo11
+{
+public static void main(String[] args)
+{
+System.out.println(dept.CSE);
+}
+}
+
+-- in the above code, it prints the text of 
+the enum
+
+every enum has a values associated with it.
+default value of enum starts with 0
+
+Example code 02:
+================
+enum dept { IT(101),CSE(108),EEE(107),
+ECE(100),AERO(115);
+
+int data;
+dept(int d){
+data=d;
+}
+
+};
+
+class Demo11
+{
+public static void main(String[] args)
+{
+dept de=dept.CSE;
+System.out.println(de.data);
+}
+}
+
+All enumerations automatically contain 
+three predefined methods:
+ values( ) , valueOf( )and 
+ordinal().
+
+public static enum-type[ ] values( )
+public static enum-type valueOf(String str)
+The values( ) method returns an 
+array that
+ contains a list of the 
+enumeration constants.
+
+The valueOf( ) method returns the
+ enumeration constant whose value
+ corresponds to the string passed
+ in str.
+
+
+Example code 03:
+================
+
+
+enum Apple {  Jonathan, GoldenDel,
+ RedDel,Winesap, Cortland }
+
+class Demo11
+ {  
+    public static void main(String args[])  
+   {    Apple ap;
+    System.out.println("Here are all Apple
+ constants:");  
+ Apple allapples[] = Apple.values();
+  
+ for(Apple a : allapples)   
+   System.out.println(a);
+    System.out.println();
+    // use valueOf()   
+ ap = Apple.valueOf("Winesap");   
+ System.out.println("ap contains " + ap);
+  } } 
+The java.lang.Enum.ordinal() method returns the ordinal of
+ this enumeration constant (its position in its enum declaration, where the initial constant is assigned an ordinal of zero).
+
+Example code 04:
+================
+enum Apple {  Jonathan, GoldenDel, 
+RedDel, Winesap, Cortland
+ }
+
+class Demo11 { 
+ public static void main(String args[])  {
+   
+    // Obtain all ordinal values using ordinal().
+    System.out.println("Here are all apple 
+constants" +" 
+and their ordinal values: ");
+   
+ for(Apple a : Apple.values())
+      System.out.println(a + " " + a.ordinal());
+
+}}
+
+Design Patterns:
+===============
+Java support various design patterns 
+that help developer
+to create projects in a simpler ways.
+1. single ton
+2. Anonymous inner classes
+3. Nested classes
+
+Singleton pattern - create only one Object 
+which can be accessed by multiple classes.
+
+class emp
+{
+final static  emp e=new emp();
+public static emp getInstance(){
+return e;
+}
+}
+class demo
+{
+public static void main(String[] args)
+{
+emp e1=emp.getInstance();
+emp e2=emp.getInstance();
+}
+}
+
+In the above code:
+1. Object e is final. that is one memory
+block is created.
+2. e1 and e2 will share the same memory of
+ object e.
+
+since only one Object is created for the
+ entire class,it is called as single ton pattern.
+
+2.Nested classes:
+=================
+A class within another classes are called as
+ nested classes.
+
+class Mobile		class Car
+{			{
+
+			
+class Battery		class Engine
+{			{
+	
+}			}
+
+}                          }
+Composition - one class is composed of 
+another class.
+
+Syntax:
+========
+
+class outer
+{
+
+	class inner{
+	}
+
+}
+
+EXAMPLE-1:
+============
+class Outer1{
+ private int data=30;
+                  class Inner{
+                         void msg(){
+                       System.out.println("data is "+data);
+                                    }
+                             }
+ 
+    void display(){
+                   Inner in=new Inner();
+                   in.msg();
+                  }
+ public static void main(String args[]){
+  Outer1 obj=new Outer1();
+  obj.display();
+ }
+}
+
+EXAMPLE-2:
+============
+// Define an inner class within a 
+for loop.
+ class Outer {  
+  int outer_x = 100;
+  void test() {   
+  for(int i=0; i<10; i++) {  
+          class Inner {    
+                void display() {
+               System.out.println("display:             
+                     outer_x = " + outer_x);      
+                     }      }   
+   Inner i = new Inner();
+      i.display();    }  } }
+
+class InnerClassDemo 
+{  
+public static void main(String args[]) {
+    Outer o = new Outer();   
+ o.test(); 
+      } }
+
+Anonymous Inner Class:
+======================
+An inner class declared without a class name
+ is known as an anonymous inner class.
+
+
+EXAMPLE-1:
+============
+abstract class Person{  
+  abstract void eat();  
+}  
+class TestAnonymousInner{  
+ public static void main(String args[]){  
+  Person p=new Person(){
+  
+  void eat(){
+System.out.println("nice fruits");}  
+  };  
+  p.eat();  
+ }  
+}  
+
+EXAMPLE-2:
+============
+class Programmer_Interview1 
+ {
+ public void read()
+ {
+  System.out.println("Programmer Interview!");
+                      }
+                            }
+
+class Website1 {
+    
+    public static void main(String args[]) {
+/*  This creates an anonymous inner class: */
+Programmer_Interview1 p= new    
+Programmer_Interview1() {
+  public void read( int a) {
+   System.out.println("anonymous
+ ProgrammerInterview");
+  }
+ };
+p.read();
+    }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

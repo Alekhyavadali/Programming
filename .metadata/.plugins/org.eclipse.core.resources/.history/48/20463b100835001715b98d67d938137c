@@ -1,0 +1,32 @@
+package queue;
+
+class me{
+	int front=-1;
+	int rear=-1;
+	int [] m=new int[5];
+	void enqueue(int x){
+	
+	for(int i=0;i<m.length;i++){
+		rear=rear+1;
+		m[rear]=x;
+	System.out.println(m[i]);
+	}}
+	int dequeue(){
+	front=m.length-2;	
+	return m[front];
+	}
+}
+public class queue {
+
+	public static void main(String[] args) {
+		me k=new me();
+		k.enqueue(5);
+		k.enqueue(2);
+		k.enqueue(3);
+		k.enqueue(8);;
+		k.enqueue(6);
+		
+
+	}
+
+}

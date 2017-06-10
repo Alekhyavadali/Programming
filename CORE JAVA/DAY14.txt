@@ -1,0 +1,175 @@
+Module -8 Continued..:: String Processing
+=================================
+Part - 2:
+
+Regular Expressions:
+
+What is Regular Expressions?
+Regular Expression is a rule/condition
+ to check whether the data is in
+ particular format or not.
+
+mobile no - 10 digits.
+credit number - 16 digits.
+CVV number - 3 digits.
+mail  id -  name@domainname
+date of birth : dd-mm-yyyy or dd/mm/year
+
+these kind of format checking are 
+called as regular expressions.
+
+To use regular expressions, we need to
+ understand the classes in java.
+
+The class that are used for regular expressions are :
+Pattern and Matcher.
+
+Pattern - checking format of the regular expressions.
+Matcher - used to check whether the 
+format is mapped according to the 
+input provided.
+
+Example code 01:
+=================
+
+import java.util.regex.*;
+class Demo16
+{
+public static void main(String[] args)
+{
+
+String msg="welcome to regular 
+expression concept of java";
+
+Pattern p=Pattern.compile("java");
+Matcher m=p.matcher(msg);
+
+if(m.find())
+System.out.println("data matched");
+else
+System.out.println("data not matched");
+}
+}
+
+Example 02: To check the mail id of 
+the user.
+=====================================
+
+import java.util.*;
+import java.util.regex.*;
+class Demo16
+{
+public static void main(String[] args)
+{
+String mailid;
+System.out.println("Enter your mailid");
+Scanner s=new Scanner(System.in);
+mailid=s.next();
+
+Pattern p=Pattern.compile("^(.+)@(.+)$");
+Matcher m=p.matcher(mailid);
+
+if(m.find())
+System.out.println("matched");
+else
+System.out.println("not matched");
+}
+}
+
+what is the format of your student id?
+Begins with S[caps/small] followed by 12 digit number
+
+[S|s][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+
+[S|s]\\d{12}
+
+Example 03: to check the student id
+============================
+import java.util.*;
+import java.util.regex.*;
+
+class Demo16
+{
+public static void main(String[] args)
+{
+String id;
+System.out.println("Enter your Studentid");
+Scanner s=new Scanner(System.in);
+id=s.next();
+
+Pattern p=Pattern.compile("[S|s]\\d{12}");
+Matcher m=p.matcher(id);
+
+if(m.find())
+System.out.println("matched");
+else
+System.out.println("not matched");
+}
+}
+
+------------Other examples of Pattern and matcher -------------
+Code 01:
+
+String msg="welcome to regular
+ expression concept of java";
+Pattern p=Pattern.compile("to.*java");
+Matcher m=p.matcher(msg);
+if(m.find())
+System.out.println(m.group());
+
+output:
+E:\java Demo16
+to regular expression concept of java
+
+Code 02:
+String msg="welcome to regular
+ expression concept of java of new 
+java7";
+Pattern p=Pattern.compile("to.*of");
+Matcher m=p.matcher(msg);
+if(m.find())
+System.out.println(m.group());
+
+output: 
+E:\>java Demo16
+to regular expression concept of 
+java of
+
+Code 03:
+Pattern p=Pattern.compile("to.*?of");
+
+output:
+E:\java Demo16
+to regular expression concept of
+
+code 04:
+Pattern p=Pattern.compile("\\d");
+
+Output:
+7
+
+Note: Practice all the expression
+ given in table of your text book.
+
+we can also use pattern and matcher to
+ replace the data.
+
+example code:
+
+import java.util.regex.*;
+
+class Demo16
+{
+public static void main(String[] args)
+{
+String msg="welcome to regular
+ expression concept of java of 
+new java7";
+Pattern p=Pattern.compile("java");
+Matcher m=p.matcher(msg);
+if(m.find())
+msg=m.replaceAll("HTML");
+System.out.println(msg);
+}
+}
+

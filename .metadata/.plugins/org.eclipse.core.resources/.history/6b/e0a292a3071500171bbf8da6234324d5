@@ -1,0 +1,27 @@
+package poly;
+public class poly12 {
+	 
+    int value = 1;
+    poly12 link;
+     
+    public poly12 ( int val){
+        this.value = val;
+    }
+     
+     
+    public static void main(String[] args) {
+        final poly12 a = new poly12(5);    //1
+        poly12 b = new poly12(10);     //2
+        a.link = b;                            //3
+        b.link = setIt(a, b);               //4
+        System.out.println(a.link.value + " "+ b.link.value);    //5
+    }
+     
+     
+    public static poly12 setIt(final poly12 x, final poly12 y){
+        x.link = y.link;    //6
+        return x;        //7
+         
+    }
+ 
+}

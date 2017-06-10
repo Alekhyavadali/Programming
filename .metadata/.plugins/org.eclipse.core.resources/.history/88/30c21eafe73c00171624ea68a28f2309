@@ -1,0 +1,38 @@
+package sorting;
+
+
+class mer{
+ void me(int[] A){
+		int n=A.length;
+		
+		
+		if(n<2){
+			return;
+		}
+		else
+		{
+			int m=n/2;
+			int[] left=new int[m];
+		for(int i=0;i<=m-1;i++){
+			left[i]=A[i];
+			System.out.print (A[i]+"");
+		}int[] right=new int[n-m];
+		for(int i=m;i<=n-1;i++){
+			right[i]=A[i];
+			System.out.println (A[i]);
+		}
+		
+		}
+		
+		}	
+	
+}
+public class merge {
+public static void main(String[] args){
+	mer k=new mer();
+	int[] r=new int[]{2,1,3,4,7,5,0};
+	k.me(r);
+	
+}
+
+}

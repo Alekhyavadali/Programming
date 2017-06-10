@@ -1,0 +1,309 @@
+Chapter 10 & 11 - Files Part 1 and Part2
+Chapter 12 & 13 - Threads and concurrency
+JDBC - Database.
+
+Chapter 10 :  
+=========
+How do store data into a program?
+Variables - store the data into a memory.
+
+what is the life time of a variable?
+till the program runs, the value is available.
+
+the data stored in the variable are temporary.. if we want to view the values later, then we have to run the program again..
+
+if we want to store the values permanently..
+ the we need to use  the concept of files..
+
+How to use files to store the data from a java program?
+type of files - text , byte file
+
+text file - the file in readable formats .
+byte file - which are in byte codes
+[combination of byte code data]
+eg: images, .mp3,.mp4,.dat files
+
+Classes used for Files:
+Package : java.io.*;
+
+Classes - text files.
+FileReader - read data from a text file
+FileWriter - writing data to a text file
+
+Byte files:
+InputStream - to read data from a byte file
+OutputStream - to write data to a byte file
+
+Example 01: to read data from a text file:
+===============================
+First we have to create a text file and add some contents to it
+in our example, file name is Student.txt
+
+import java.io.*;
+class Demo19
+{
+public static void main(String args[])
+throws IOException
+{
+char[] c=new char[100];
+FileReader fr=new FileReader("
+D:\\FILES\\FILES.txt");
+fr.read(c);
+
+System.out.println("Contents are of the 
+files is...");
+for(char a : c)
+System.out.print(a);
+}
+}
+
+Example code 02 : to write data to a file :
+================================
+import java.io.*;
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+FileWriter fw=new FileWriter("D:\\FILES\\Student.txt");
+fw.write("vikram is a student of JAVA batch");
+//fw.close();
+  }
+}
+
+Note: when we write to a file, the close() 
+function has to be used.
+only when we close the file,all resources
+ will be saved.
+
+how to write content to a file which is
+ already created?
+import java.io.*;
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+FileWriter fw=new FileWriter("D:\\FILES\\Student.txt");
+fw.write("vinay chand belongs to U S");
+fw.close();
+}
+}
+
+when we run the above program, the file is 
+over-written.
+the oldcontents of the file are replaced with the new contents.
+
+how do we save the data?
+import java.io.*;
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+FileWriter fw=new FileWriter("D:\\FILES\\Student1.txt",true);
+BufferedWriter bw=new BufferedWriter(fw);
+bw.write("Ramu is the faculty for Java module");
+bw.close();
+fw.close();
+}
+}
+
+how to read and write data to a byte stream?
+===================================
+Example 01: how to write data to a byte stream?
+======================================
+import java.io.*;
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+FileOutputStream fos=new FileOutputStream("D:\\FILES\\Vikram.txt");
+fos.write(67);
+fos.write(98);
+fos.write(112);
+fos.close();
+}
+}
+
+when we run the above code and see the file contents,
+file contains Cbp
+
+these are ASCII codes for the characters C,b and p
+
+A - 65, B-66 ..
+a-97, b-98..
+
+how to read data from a byte stream file?
+================================
+import java.io.*;
+
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+byte[] b=new byte[100];
+FileInputStream fis=new FileInputStream("D:\\FILES\\vikram.txt");
+fis.read(b);
+
+for(byte a : b)
+System.out.println(a);
+}
+}
+
+How do we classify the I/O types in java?
+
+1. Files
+2. Console I/O
+Console - screen [Command prompt]
+the application which work on the command 
+prompt is a console
+applications.
+
+For getting the input from user, through a command prompt
+we use Scanner .
+Scanner - 
+System.in, System.out,System.err
+
+Example code:
+import java.io.*;
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+Console c=System.console();
+
+String name;
+name=c.readLine("%s","Enter your name");
+System.out.println("your name is "+name);
+}
+}
+
+using Channels in Files:
+==================
+
+if the file contains 10000characters, then 
+reading the data
+character by character will take time? 
+yes.
+
+instead if we read the data as a block , 
+then can we save time?
+yes.
+this can be achieved using Channel classes.
+
+Example code:
+===========
+import java.io.*;
+import java.nio.*;
+import java.nio.channels.*;
+
+class Demo19
+{
+public static void main(String[] args) 
+{
+try(FileChannel fci=
+new FileInputStream("D:\\FILES\\Student.txt").getChannel();
+FileChannel fco=
+new FileOutputStream("D:\\FILES\\Shyam.txt").getChannel())
+{
+ByteBuffer buf=ByteBuffer.allocate((int)fci.size());
+fci.read(buf);
+buf.position(0);
+
+fco.write(buf);
+}
+catch(Exception e){}
+}
+}
+
+how to write /read Object data to /
+from a file?
+===================================
+import java.io.*;
+
+class Product
+{
+String pname,pdesc;
+public Product(String p,String n){
+pname=p;
+pdesc=n;
+}
+}
+
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+Product p=new Product("Watermelon",
+"It is good for Summer");
+FileOutputStream fos=
+new FileOutputStream("D:\\FILES\\ProductData.txt");
+fos.write(p);
+System.out.println("File data written successfully..");
+}
+}
+
+in the above code , fos.write(p), it is an error..
+because it is not possible to write the 
+direct Object data to a file.
+
+To write the Object data /read the Object data
+read -ObjectInputStream
+write - ObjectOutputStream
+
+Serialization - process of converting the 
+Object into bytes.
+
+Example code :
+============
+import java.io.*;
+class Product implements Serializable
+{
+String pname,pdesc;
+public Product(String p,String n){
+pname=p;
+pdesc=n;
+}
+}
+
+class Demo19
+{
+public static void main(String[] args) throws IOException
+{
+Product p=new Product("Watermelon","It is good for Summer");
+FileOutputStream fos=
+new FileOutputStream("D:\\FILES\\ProductData.txt");
+ObjectOutputStream o=new ObjectOutputStream(fos);
+o.writeObject(p);
+System.out.println("File data written successfully..");
+}
+}
+
+Note: to do serialization, class must implement the 
+interface Serializable.
+
+Deserialization - used to convert byte data 
+to the original
+Object data.
+
+how to read Object data from a byte file?
+import java.io.*;
+
+class Product implements Serializable
+{
+String pname,pdesc;
+public Product(String p,String n){
+pname=p;
+pdesc=n;
+}
+}
+
+class Demo19
+{
+public static void main(String[] args) throws Exception
+{
+FileInputStream fis=
+new FileInputStream("D:\\FILES\\ProductData.txt");
+ObjectInputStream ois=new ObjectInputStream(fis);
+Product p=(Product)ois.readObject();
+System.out.println(p.pname+ " "+p.pdesc);
+}
+}

@@ -1,0 +1,648 @@
+Why Arrays:
+
+To find the sum of five numbers .
+
+int no1=45,no2=40,no3=100,no4=59,no5=21;
+int sum=no1+no2+no3+no4+no5;
+S.O.P(sum);
+
+for adding 'n' numbers -- we require 'n' variables.
+
+Observations:
+when number of variables are increasing in program,
+1. more space.
+2. lengthy code./execution time
+3. difficult to remember the variable names.
+4. more chances of error.
+
+Solution:
+if all the data are of same type, 
+then instead of using
+different variables store all the
+ data into a single
+variable..
+These single variables are called as 
+arrays.
+
+Arrays are collection of data items of
+ similar types which
+are stored together in continous 
+memory allocations.
+
+syntax:
+datatype[] arrayname=new datatype[size];
+
+eg:
+int[] no=new int[5];
+
+example code: 01
+ ================
+class Demo5
+{
+public static void main(String[] args)
+{
+int[] no=new int[5];
+no[0]=45;
+no[1]=21;
+no[2]=67;
+no[3]=89;
+no[4]=90;
+int sum=no[0]+no[1]+no[2]+no[3]+no[4];
+System.out.println(sum);
+}
+}
+
+example code 02:
+===============
+int no[] ={10,34,21,67,90,32,65,91};
+
+System.out.println(no[5]);
+
+System.out.println(no[2]*no[7]);
+
+
+Difference between static and dynamic array is:
+static array:
+value is already fixed. only that much 
+amount of elements
+can be stored.
+eg:
+int[] x=new int[10]; 
+size of the array is 10.. so only
+10 elements can be stored.
+
+Dynamic array:
+value is not fixed...so many number of elements can be
+stored.
+eg:
+int x[] ={...}
+
+How to get array inputs from the user?
+======================================
+import java.util.*;
+
+class Demo5
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+
+int[] no=new int[5];
+System.out.println("Enter five numbers");
+
+for(int i=0;i<5;i++)
+{
+no[i]=s.nextInt();
+}
+
+System.out.println("Elements are..");
+for(int i=0;i<5;i++)
+{
+System.out.println(no[i]);
+}
+
+}
+}
+
+
+1. String operations
+2. return values from functions
+3. About import and package statements 
+
+String Operations:
+===================
+equals()
+toUpperCase() and toLowerCase()
+length()
+concat() and substring()
+
+equals() - used to compare the string or Object values.
+
+== (only used for comparing int,char,float,double,boolean)
+
+examples code:
+==============
+import java.util.*;
+
+class Demo6
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+System.out.println("Enter your name");
+String name=s.next();
+if(name.equals("niit"))
+System.out.println("correct");
+else
+System.out.println("Incorrect");
+}
+}
+
+Other functions are:
+====================
+class Demo6
+{
+public static void main(String[] args)
+{
+String s1="Welcome";
+String s2="To Java";
+System.out.println(s1.concat(s2));
+System.out.println(s1.toUpperCase());//WELCOME
+System.out.println(s1.length());//7
+}
+}
+
+concat() - used to append(combine) two strings.
+Length() - used to find the length of 
+the strings...ie
+ 	   no of characters in a 
+string.
+
+toUpperCase() - convert all the characters of a string into
+  		a upper case.
+toLowerCase() - convert all the 
+characters of a string into
+		a lower case
+
+
+Another example of String functions:
+===================================
+class Demo6
+{
+public static void main(String[] args)
+{
+
+String message="Welcome to JAVA Batch";
+System.out.println(message.concat("of 6:45 to 8:00"));
+System.out.println("Length="+message.length());
+System.out.println(message.toUpperCase());
+System.out.println(message.substring(0,15));
+
+}
+}
+
+
+=======================================================
+To return values from the functions:
+=====================================
+
+Example code 01:
+================
+class Calculator
+{
+int add(int a,int b)
+{
+int res=a+b;
+return res;
+}
+}
+
+class Demo6
+{
+public static void main(String[] args)
+{
+int x=10,y=6;
+Calculator c=new Calculator();
+int sum=c.add(x,y);
+System.out.println(sum);
+}
+}
+
+Example code 02:
+================
+class Customer
+{
+String check(String name,String 
+pass)
+{
+if((name.equals("student")) && 
+(pass.equals("niit")))
+return "success";
+else 
+return "Failure";
+}
+}
+class Demo6
+{
+public static void main(String[] args)
+{
+Customer c=new Customer();
+String res=c.check("student",
+"niit");
+System.out.println(res);
+}
+}
+
+Notes:
+1. when we use return statement 
+in a functions, its
+return type should not be void.
+2. a function can return only
+ one value.
+
+About Import and package statements :
+=====================================
+Package Statements:
+
+
+import statements;
+package statements;
+
+class classname{
+public static void main(String[] args)
+{
+
+}
+}
+
+Package[Folder] - collection of 
+classes
+
+Ramu Folder			JAVA Folder
+
+Employee.java			Customer.java
+
+Package Ramu;			import Ramu.*;
+class Employee			class Customer
+{				{ 
+ public void msg(){              public static void main(String args[])
+ System.out.println("welcome     {
+                                   Employee e=new Employee();
+to package");                      e.msg();
+}			                   }
+}                                       }					
+    
+                                          
+                                             
+                                           
+                                            
+ 
+ 
+				}
+
+
+
+import java.util;
+import java.util.*;
+
+import java.util.Scanner;
+import java.util.Date
+
+import java.util.*; - all the classes of the utility 
+package will be included.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

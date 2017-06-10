@@ -1,0 +1,15 @@
+interface Car {
+	  double price;
+	 public void goFast();
+ }
+ class Motor implements Car
+ {
+	public void goFast(){
+		 System.out.println("too fast");
+	 }
+ }
+ public static void main(String[] args)
+ {
+	Motor m=new Motor();
+	m.goFast();
+ }

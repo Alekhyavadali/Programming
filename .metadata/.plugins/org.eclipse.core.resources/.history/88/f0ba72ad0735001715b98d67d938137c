@@ -1,0 +1,23 @@
+package queue;
+
+class me{
+	int front=-1;
+	int [] m=new int[10];
+	void enqueue(int x){
+	m[0]=x;	
+	System.out.println(m);
+	}
+	int dequeue(){
+	front=m.length-2;	
+	return m[front];
+	}
+}
+public class queue {
+
+	public static void main(String[] args) {
+		me k=new me();
+		k.enqueue(5);
+
+	}
+
+}

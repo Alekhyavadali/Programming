@@ -1,0 +1,14 @@
+package k;
+
+class T {
+
+}
+public class traveller {
+public static void main (String[] args) {
+int[] k=null;
+for(int i:k){
+	System.out.println(i);
+}
+;
+}
+}

@@ -1,0 +1,264 @@
+Chapter 14:
+=========
+Working with Databases 
+===================
+
+Database - collection of data grouped together.
+eg: SQL, Oracle, DB2, MySQL,MsAccess etc.
+
+How do we connect java program with the database?
+what are the various operations we can do on the database?
+
+How to create a table using jdbc
+================================
+
+import java.sql.*;
+
+public class TableCrt 
+{
+    public static void main(String[] args) 
+throws Exception
+ {
+DriverManager.registerDriver(new oracle.jdbc.
+driver.OracleDriver());
+
+Connection con=DriverManager.getConnection
+("jdbc:oracle:thin:@localhost:1521:XE","hr", "hr");
+Statement st=con.createStatement();
+String sql="create table student(sid number(5),
+sname varchar2(25),address varchar2(25))";
+ st.execute(sql);
+ System.out.println("Table Created");
+st.close();
+con.close();
+    }
+    
+}
+
+
+To insert records into a table:
+======================
+import java.sql.*;
+import java.util.*;
+
+class Demo21
+{
+public static void main(String[] args) throws
+ Exception
+{
+int i;String n,a;
+Scanner s=new Scanner(System.in);
+System.out.println("Enter the ID ,name and address");
+i=s.nextInt();
+n=s.next();
+a=s.next();
+DriverManager.registerDriver(new oracle.jdbc.
+driver.OracleDriver());
+
+Connection con=DriverManager.getConnection
+("jdbc:oracle:thin:@localhost:1521:XE","hr", "hr");
+Statement st=con.createStatement();
+
+String command="insert into student values(?,?,?)";
+
+PreparedStatement ps=con.prepareStatement(command);
+
+ps.setInt(1,i);
+ ps.setString(2,n);
+ps.setString(3,a);
+ps.executeUpdate();
+}
+}
+
+
+How to view a particular record from a table?
+==============================================
+
+import java.util.*;
+class Demo21
+{
+public static void main(String[] args) throws Exception
+{
+int i;
+Scanner s=new Scanner(System.in);
+System.out.println("Enter the ID");
+i=s.nextInt();
+
+DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+Connection con=DriverManager.getConnection
+("jdbc:oracle:thin:@localhost:1521:XE","hr", "hr");
+
+String command="select * from student where sid=?";
+PreparedStatement ps=c.prepareStatement(command);
+ps.setInt(1,i);
+
+ResultSet rs=ps.executeQuery();
+while(rs.next())
+System.out.println(rs.getInt("sid")+ " "+
+rs.getString("sname")+ " "+rs.getString("address"));
+}
+}
+
+get user defined values :
+PreparedStatement ()
+insert ,delete or update - executeUpdate()
+
+To delete a record from a table:
+========================
+import java.sql.*;
+import java.util.*;
+class Demo21
+{
+public static void main(String[] args) throws Exception
+{
+int i;
+Scanner s=new Scanner(System.in);
+System.out.println("Enter the ID and name");
+i=s.nextInt();
+
+DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+Connection con=DriverManager.getConnection
+("jdbc:oracle:thin:@localhost:1521:XE","hr", "hr");
+
+String command="delete from student where id=?";
+PreparedStatement ps=c.prepareStatement(command);
+ps.setInt(1,i);
+
+int count=ps.executeUpdate();
+if(count>0)
+System.out.println("records deleted..");
+else
+System.out.println("Record is not in database");
+
+System.out.println("Remaining Records..");
+Statement s1=con.createStatement();
+ResultSet rs=s1.executeQuery("select * from Student");
+while(rs.next())
+System.out.println(rs.getInt("id")+ " "+rs.getString("name"));
+}
+}
+
+===============================================
+JAVA7 - provides a new way to do this operations in a easier way.
+
+import javax.sql.rowset.*;
+class Demo21
+{
+public static void main(String[] args) throws Exception
+{
+JdbcRowSet jd=RowSetProvider.newFactory().createJdbcRowSet();
+
+jd.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+jd.setUsername("hr");
+jd.setPassword("hr");
+
+jd.setCommand("select * from student");
+jd.execute();
+
+while(jd.next())
+System.out.println(jd.getInt("id")+ " "+jd.getString("name"));
+}
+}
+
+RowSetProvider.newFactory().createJdbcRowSet();
+
+RowSetProvider - to check the driver 
+newFactory() - used to create a connection
+createJdbcRowSet - used to create statements and store results.
+========================================================
+
+In all database , there is a concept called Transactions:
+Transaction - set of statements executed together which will be either
+committed or rollback.
+
+connect :
+1. audio -correct		1.audio - not working
+2. video - not working	2. video - working
+
+1.audio - works		1. audio - not working
+2. video - works		2. video - not working
+
+in the above example , we prefer case 3, because
+all works correctly . therefore transaction is 
+successful.
+
+when ever we execute multiple statements, only if all statements are
+correct, we can execute all statements. 
+transaction is successful.
+
+even if one statement goes wrong.. then entire transaction is said
+to be an unsuccessful. it will be rollbacked.
+
+import java.sql.*;
+import java.sql.*;
+
+class Demo21
+{
+public static void main(String[] args) throws Exception
+{
+DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+Connection con=DriverManager.getConnection
+("jdbc:oracle:thin:@localhost:1521:XE","hr", "hr");
+
+Statement s=c.createStatement();
+String cmd1="insert into Employee values(1003,'Shruthi')";
+s.executeUpdate(cmd1);
+
+String cmd2="insert into Employee values(1002,'Priyanka','vizag')";
+s.executeUpdate(cmd2);
+
+System.out.println("Records inserted..");
+}
+}
+
+In the above code, there are two statements..
+one statement is right and other one is wrong.. but still
+the record 1003 Shruthi has got inserted...
+which violates the rules of a Transactions.
+
+Below is the code for the Transactions:
+==============================
+import java.sql.*;
+import java.sql.*;
+
+class Demo21
+{
+public static void main(String[] args) throws Exception
+{
+DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+Connection con=DriverManager.getConnection
+("jdbc:oracle:thin:@localhost:1521:XE","hr", "hr");
+c.setAutoCommit(false);
+
+Statement s=c.createStatement();
+String cmd1="insert into Employee values(1005,'Shyam')";
+s.executeUpdate(cmd1);
+
+String cmd2="insert into Employee values(1002,'Priyanka')";
+s.executeUpdate(cmd2);
+
+try{
+c.commit();
+System.out.println("Records inserted..");
+}
+catch(Exception e){
+c.rollback();
+}
+}
+}
+
+=====================================================
+There is also a concept called Procedures.
+
+String cmd="{call  procedure(?,?)}";
+
+CallableStatement cs=con.prepareCall("{call proc(?)"});
+cs.setInt(1,value);
+
+=== to get extra information about tables, databases etc.
+
+DatabaseMetaData dm=con.getMetaData();
+int count=con.getMetaData().getColumnCount();
+
+String name=con.getMetaData().getColumnName(2);
+

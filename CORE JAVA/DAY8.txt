@@ -1,0 +1,907 @@
+Objectives:
+Overloading & Overriding
+Abstraction and Encapsulation:
+
+
+
+
+
+Analyze the program given below :
+
+
+class Employee
+{
+void display()
+  {
+System.out.println("Employee class");
+  }
+}
+
+class Manager extends Employee
+{
+void display(){
+super.display();
+System.out.println("Manager Class");
+}
+}
+
+class Demo8
+{
+public static void main(String[] args)
+{
+Manager m=new Manager();
+m.display();
+}
+}
+
+--- in the above code, 
+m.display() will call the child 
+class methods, in order to call 
+the parent class methods
+we need to use super.methodname()
+
+The process in which the same 
+function name is used by
+both the parent and child classes are called as 
+over-riding.
+
+=============================================================
+
+Overloading - the process in 
+which the same function name
+is used to do multiple operations.
+
+one Object does multiple activities.
+
+Polymorphism - is the ability of 
+an Object to exist in
+many forms.
+
+Example code for overloading:
+=============
+
+class Calculator
+{
+void add(int a,int b)
+{
+System.out.println(a+b);
+}
+void add(int a,int b,int c)
+{
+System.out.println(a+b+c);
+}
+void add(float a,int b)
+{
+System.out.println(a+b);
+}
+}
+
+
+class Demo8
+{
+public static void main(String[] args)
+{
+Calculator c=new Calculator();
+c.add(10,4,5);
+}
+}
+
+Rules to define the function 
+overloading:
+we must follow the concept of function
+ signatures.
+1. sequence/order of parameter
+2. datatype of the parameter
+3. no.of parameters.
+
+sequence/order of parameter:
+
+void add(int a,float b)
+void add(float a,int b)
+
+add(10,4.5F);
+add(7.3F,14);
+
+datatype of the parameter
+
+void add(int a,int b)
+void add(float a,float b)
+
+no.of parameter
+
+void add(int a,int b)
+void add(int a,int b,int c)
+
+
+System.out.println(45);
+System.out.println("Welcome");
+System.out.println(45.3F);
+-- println() - prints all types 
+of 
+values.. this is an
+example of overloading.
+
+--- there are two types of 
+Polymorphism:
+1. Run-time Polymorphism
+2. Compile-time Polymorphism
+
+Compile-time Polymorphism:
+
+void add(int x,int y)
+{
+System.out.println(x+y);
+}
+void add(float x,int y)
+{
+System.out.println(x+y);
+}
+
+add(10,3);
+
+-- in the above, at the compile
+ time 
+itself it is very
+well known that, the add(10,3) will 
+call add(int x,int y)
+
+Run-time Polymorphism: [under inheritance]:
+===========================================
+
+Books b=new Books();
+b.display();
+Fruits f=new Fruits();
+f.display();
+
+How many Objects created? how 
+many 
+memory blocks
+are allocated ? - 2
+
+
+class Product
+{
+int amt=450;
+void display(){
+System.out.println("The amount is"
++amt);
+}
+}
+class Books extends Product
+{
+void display(){
+System.out.println(amt*4);
+}
+}
+class Fruits extends Product
+{
+void display(){
+System.out.println(amt*8);
+}
+}
+
+class Demo8
+{
+public static void main(String[] args)
+{
+
+Product p=new Books();
+p.display();
+
+p=new Fruits();polymorphic object
+p.display();
+
+}
+}
+
+===========================================================
+
+Overriding - using the same 
+function name in different classes.
+parent class and child class.
+
+Overloading - using the same
+ function name in 
+same classes
+
+
+
+Abstraction and Encapsulation:
+
+Abstraction - process of presenting the 
+relevant data to the user.
+
+Encapsulation - hiding the ir-relevant
+data from the user/wrapping up of the data.
+
+how do we achieve this in Program?
+we can achieve this in a program 
+with the help of access-specifiers.
+
+access-specifier - restrict the 
+data access.
+
+Java contains 4 access -specifiers:
+1. default
+2. private
+3. public
+4. protected
+
+Example code(default) : 01:
+==================
+class demo
+{
+int a;
+}
+
+class Demo9
+{
+public static void main(String[] args)
+{
+demo d=new demo();
+d.a=10;
+}
+}
+
+In the above program , the class
+ demo 
+and variable (a) are
+accessible inside the main method 
+... 
+so it is because of "default" 
+access specifier.
+
+
+class demo
+{
+private int a=10;
+void compute(){
+System.out.println(a*5);
+}
+}
+
+class Demo9
+{
+public static void main(String[] args)
+{
+demo d=new demo();
+//d.a=10;
+d.compute();
+}
+}
+
+In the above code,
+variable "a" is declared private..
+ hence it can be accessed
+only within the class..
+
+d.a=10;// error.. variable cannot be 
+accessed.
+
+To understand  and protected:
+===================================
+you will learn in 
+Inheritance and interfaces:
+
+FIELD SHADOWING:-
+=================
+
+
+In the code below :
+class Fruits
+{
+int amt=400;
+}
+
+class Product extends Fruits
+{
+int amt=300;
+void display()
+{
+System.out.println(amt*10);
+}
+}
+
+class Demo9
+{
+public static void main(String
+ args[])
+{
+Product p = new Product();
+p.display();
+}
+}
+
+The parent class and child class
+ contains same variable
+name.. so the preference will be 
+given 
+only for the child
+class variable..
+result will be 3000.. this concept is 
+called as "Field Shadowing"
+
+===========================================================
+Over-riding Object methods:
+===========================
+
+By default every class of Java 
+extends
+ _________?
+ans: Object class.
+
+Object contains various methods:
+toString(), equals(), Clone(), 
+finalize(),
+hashCode() etc.
+
+toString() method:
+==================
+
+class Date
+{
+int day,month,year;
+public Date(int d,int m,int y){
+day=d;
+month=m;
+year=y;
+}
+
+public String toString(){
+return day+" /"+month+"/ "+year;
+}
+}
+
+class Demo9
+{
+public static void main(String[] args)
+{
+Date d1=new Date(10,8, 2016);
+System.out.println(d1);
+}
+}
+
+By default, the Object will print
+ the address.. instead
+of returning an Object value, 
+to return a string value,
+we can use the concept of 
+toString() method.
+
+Class Student extends Object
+{
+
+public String toString(){
+}
+
+}
+
+equals() and hashCode() methods:
+==============================
+
+class Student
+{
+String name;
+}
+class Demo9
+{
+public static void main(String[] args)
+{
+Student s1=new Student();
+Student s2=new Student();
+
+System.out.println("S1 address="+s1.hashCode());
+System.out.println("S2 address="+s2.hashCode());
+
+if(s1.equals(s2))
+System.out.println("true");
+else
+System.out.println("false");
+}
+}
+
+equals() method in the above code, 
+tries to compare
+the address of two memory Object 
+locations... 
+to find the address , use hashCode() methods.
+
+if we give the following line:
+
+Student s2=s1;
+
+output will be true
+
+Output:
+E:\>javac Demo9.java                                            E:\PGPv3_03_JAVA7>java Demo9           
+S1 address=435819900                   
+S2 address=1905823030                  
+false                                                                         E:E:\PGPv3_03_JAVA7>javac Demo9.java                                            E:E:\PGPv3_03_JAVA7>java Demo9           
+S1 address=1406297426                  
+S2 address=1406297426                  
+true    
+
+finalize() and clone() method:
+==============================
+The java.lang.Object.finalize() is 
+called by the garbage 
+collector on an object when 
+garbage
+ collection determines that there are
+ no more references to the object.
+
+The object cloning is a way to 
+create 
+exact copy of an object.
+ For this purpose, clone() method of 
+Object class is used to clone an
+ object.
+
+Why use clone() method ?
+
+The clone() method saves the extra
+ processing task for creating the 
+exact copy of an object. 
+If we perform it by using the new 
+keyword, it will take a lot of
+ processing to be performed 
+that is why we use object cloning.
+
+Advantage of Object cloning
+
+Less processing task.
+
+This will be covered with an 
+examples  in Exception handling.
+                               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

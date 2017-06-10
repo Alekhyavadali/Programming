@@ -1,0 +1,402 @@
+Volume - II: 7 Chapters
+===================
+Chapter 9 - Exception handling
+Chapter 10 - Files Part 1
+Chapter 11 - Files Part 2
+Chapter 12 - Threads Part1
+Chapter 13 - Threads Part2
+Chapter 14 - Localization
+Chapter 15 - JDBC
+
+=====================================================
+Chapter 9 - 
+
+When you do a program , 
+what are the kind of errors you get?
+1.Syntax errors
+2.Runtime errors
+3.Logical errors
+
+Syntax error :
+missing semicolon, case sensitive, not
+ adding packages,not giving proper
+ syntax... 
+
+These can be corrected? - yes. it has 
+to be corrected to run the program.
+
+Logical errors :
+program gives the output.. but it is
+ not the expected output.
+
+you want to get remainder of the 
+number
+
+int a=10;
+int b=a/2; 
+
+output : 5  [Expected output : 0]
+correct code is : b=a%2
+
+3.Runtime error : The errors which 
+appears after running the program is
+called as runtime error or exceptions.
+
+exception - the unexpected error which
+ appears in the program.
+
+whenever user gives an improper input 
+/any kind of error that happens during
+ the runtime of a program must be
+ handled.
+These kind of error management is 
+called as an Exception handling.
+
+Exception handling is the process of 
+handling runtime errors in the programs.
+
+how to handle these kind of errors?
+
+try - catch - finally 
+
+try - keyword: the code which is may
+ cause an error should be given inside
+ the block
+
+catch - will handle the error which 
+comes from the try block.
+
+syntax:
+
+try
+{
+//code
+}
+catch(Exception obj)
+{
+}
+
+Note: Exception is a pre-defined class
+ , which will handle all types of run
+ time errors in the programs
+
+Example code : 01:
+===============
+import java.util.*;
+
+class Demo17
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+try
+{
+System.out.println("Enter a number");
+int a=s.nextInt();
+System.out.println("The number is"+a);
+}
+catch(Exception e)
+{
+System.out.println("Please enter only
+ numbers");
+}
+}
+}
+
+Example code 02:
+==============
+import java.util.*;
+
+class Demo17
+{
+public static void main(String[] args)
+{
+int[] a=new int[5];
+try{
+a[4]=25;
+System.out.println(a[8]);
+}
+catch(Exception e){
+System.out.println("Array size is out 
+of range!");
+}
+}
+}
+
+finally - block :
+whether the exception thrown or not, 
+the finally block will execute.
+
+import java.util.*;
+
+class Demo17
+{
+public static void main(String[] args)
+{
+int[] a=new int[5];
+try{
+a[2]=25;
+System.out.println(a[2]);
+}
+catch(Exception e){
+System.out.println("Array size is out of range!");
+}
+finally{
+System.out.println("Program completed..");
+}
+}
+}
+
+output:
+E:\>javac Demo17.java
+E:\>java Demo17
+Array size is out of range!
+Program completed..
+
+E:\>javac Demo17.java
+E:\>java Demo17
+25
+Program completed..
+
+From the above output , we understood 
+that finally block always execute 
+whether the errors occurs or not.
+
+import java.io.*;
+
+class Demo17
+{
+public static void main(String[] args)
+{
+int a=10,b=0,res=0;
+try{
+res=a/b;
+System.out.println(res);
+}
+catch(ArithmeticException e)
+{
+System.out.println("Do not try to 
+divide number by Zero. it is infinity");
+}
+catch(IOException e)
+{
+System.out.println("Error. please check the file");
+}
+
+}
+}
+
+Note: from the above code we 
+understood two things:
+1. if we know the exception name 
+correctly then we can give specify
+them directly in the catch blocks.
+
+catch(ArithmeticException e)
+{
+
+}
+
+2. we can also have multiple catch 
+blocks for a single try blocks.
+A function can have only one try 
+blocks, but can have mutiple catch
+blocks..  what every error comes from
+ the try block, based on that
+error , the corresponding catch block
+ gets executed.
+
+if we feel difficult to use multiple exception names, we can overcome the problem by using a single catch block that takes exception has the 
+parameter
+
+catch(Exception e)
+{
+}
+
+because Exception is the super class of all exceptions which can handle all types of errors.
+
+catch (ArithmeticException e |
+ SQLException e | IOException e)
+{
+
+}
+
+We can also try block with  Auto
+ Resource statements:
+===========================================
+
+try(Employee e=new Employee())
+
+the above line is called as "try-with-resources"
+
+purpose : when we use try-with-resources,
+ the memory will be  allocated and 
+also it will automatically call the 
+close method to deallocate
+the resources.
+
+This is also the another use of the 
+try blocks:
+-----------------------------------------------------------
+
+class Employee implements 
+AutoCloseable
+{
+public void display(){
+System.out.println("Employee class..");
+}
+public void close(){
+System.out.println("Employee class 
+memory deallocated..");
+}
+}
+class Demo17
+{
+public static void main(String[] args)
+{
+try(Employee e=new Employee())
+{
+e.display();
+}
+catch(Exception e){}
+}
+}
+
+Employee e=new Employee();
+we are creating Object, memory gets 
+allocated.
+
+try(Employee e=new Employee()) - 
+this will call the close 
+method automatically after the program
+ gets completed. this will give
+the guarantee that program memory is 
+getting deallocated.
+
+E:\>javac Demo17.java
+E:\>java Demo17
+Employee class..
+Employee class memory deallocated..
+
+Throws and throw keyword in exceptions:
+-------------------------------------------------------
+throws keyword - is used when ever a 
+method or a class has to throws
+an error to the calling program.
+
+import java.util.*;
+class Student
+{
+int id;
+void display() throws Exception
+{
+Scanner s=new Scanner(System.in);
+System.out.println("Enter the id");
+id=s.nextInt();
+System.out.println("The student is "+id);
+}
+}
+class Demo17
+{
+public static void main(String[] args)
+{
+Student s=new Student();
+try{
+s.display();
+}
+catch(Exception e){
+System.out.println("Error.. try again..");
+}
+}
+}
+
+throw - keyword :
+used to handle custom exceptions.
+used to handle user-defined exceptions..
+ when we create exceptions of our own, those kind
+ of exceptions can be handled using throw keyword.
+
+import java.util.*;
+
+class MarkException extends Exception
+{
+public MarkException(String msg)
+{
+System.out.println(msg);
+}
+}
+class Demo17
+{
+void check(int m) throws Exception
+{
+if(m>=0 && m<=100)
+System.out.println("Correct");
+else
+throw new MarkException("not  valid..Please try again");
+}
+public static void main(String[] args)
+{
+Demo17 d=new Demo17();
+Scanner s=new Scanner(System.in);
+System.out.println("Enter number");
+int mark=s.nextInt();
+try{
+d.check(mark);
+}
+catch(Exception e){
+System.out.println("error!");
+}
+}
+}
+
+to check age of a customer. 
+age should be >=18.
+
+import java.util.*;
+
+class AgeException extends Exception{
+public AgeException(String m){
+System.out.println(m);
+}
+}
+class Customer
+{
+void check(int a) throws Exception
+{
+if (a<18)
+throw new AgeException("Age cannot be 
+lesser than 18");
+else
+System.out.println("Age is correct");
+}
+}
+class Demo17
+{
+public static void main(String[] args)
+{
+Customer c=new Customer();
+Scanner s=new Scanner(System.in);
+System.out.println("Enter your age");
+int age=s.nextInt();
+try{
+c.check(age);
+}
+catch(Exception e){
+System.out.println("Error");
+}
+}
+}
+
+output:
+E:\PGPv3_03_JAVA7>javac Demo17.java
+E:\PGPv3_03_JAVA7>java Demo17
+Enter your age
+21
+Age is correct
+
+E:\PGPv3_03_JAVA7>java Demo17
+Enter your age
+17
+Age cannot be lesser than 18
+Error
+

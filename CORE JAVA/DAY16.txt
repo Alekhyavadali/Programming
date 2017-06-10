@@ -1,0 +1,162 @@
+Module 9 Continued:
+1. Exception handling - try,catch,finally, throw, throws - completed.
+2. Assertions.
+
+Assertions:
+=========
+Assertion is a statement in java. It can be used 
+to test your assumptions about the program.
+
+While executing assertion, it is 
+believed to be true. If it fails,
+ JVM will throw an error named AssertionError. 
+It is mainly used for testing purpose.
+
+syntax:
+assert condition : message
+
+While running the program, then we need to 
+enable them using 
+java -ea filename.
+
+ea- enable assertions
+
+example code:
+import java.util.*;
+class Demo18
+{
+public static void main(String[] args)
+{
+Scanner s=new Scanner(System.in);
+System.out.println("Enter your age..");
+int age=s.nextInt();
+
+assert age>=18:"Not Authorized to Vote";
+System.out.println("The age is"+age);
+}
+}
+
+output:
+=====
+
+E:\>javac Demo18.java
+E:\>java -ea Demo18
+Enter your age..
+21
+The age is21
+E:\>java -ea Demo18
+Enter your age..
+16
+Exception in thread "main" 
+java.lang.AssertionError: 
+Not Authorized to Vote
+        at Demo18.main(Demo18.java:11)
+
+
+Chapter 15 ::
+==========
+Localization
+==========
+-- is the process of creating 
+application that can be used any 
+customer /client 
+ in their own language.
+-- the process of creating an 
+application for a specific locale is 
+called Localization.
+
+Locale - is the combination of 
+Language and country code.
+Language- country
+
+eg:
+hi - IN   [Hindi - India]
+te-IN  [Telugu - India]
+ta- IN [Tamil - India]
+en-US [English - UnitedStates]
+
+Example code 01:
+=============
+import java.util.*;
+
+class Demo18
+{
+public static void main(String[] args)
+{
+Locale l=new Locale("ta","IN");
+System.out.println(l.getDisplayCountry());
+System.out.println(l.getDisplayLanguage());
+}
+}
+
+Example code 02:
+==============
+we can also store the languages in a separate
+ file and then access them in 
+the code using ResourceBundle class.
+
+create a file ->Save it as : HindiBundle_hi_IN.properties
+welcome=Swagat hai
+
+now , write the code to access the above message:
+
+import java.util.*;
+class Demo18
+{
+public static void main(String[] args)
+{
+ResourceBundle rb=ResourceBundle.getBundle
+("HindiBundle_hi_IN");
+System.out.println(rb.getString("welcome"));
+}
+}
+
+Example code 03:
+==============
+Date format :
+
+import java.util.*;
+import java.text.*;
+class Demo18
+{
+public static void main(String[] args)
+{
+//Locale l=new Locale("fr","FR");
+//Locale l=new Locale("zh","CN");
+Locale l=new Locale("en","US");
+DateFormat df=DateFormat.getDateInstance
+(DateFormat.DEFAULT, l);
+Date d=new Date();
+System.out.println(df.format(d));
+}
+}
+
+Currency format :
+=============
+import java.util.*;
+import java.text.*;
+class Demo18
+{
+public static void main(String[] args)
+{
+Locale l=new Locale("fr","FR");
+//Locale l=new Locale("zh","CN");
+//Locale l=new Locale("en","US");
+
+NumberFormat nf=NumberFormat.getCurrencyInstance(l);
+System.out.println(nf.format(100));
+}
+}
+
+output:
+E:\>javac Demo18.java
+E:\>java Demo18
+$100.00
+
+E:\>javac Demo18.java
+E:\>java Demo18
+?100.00
+
+E:\>javac Demo18.java
+E:\>java Demo18
+100,00 Ç

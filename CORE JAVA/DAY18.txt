@@ -1,0 +1,341 @@
+Chapter 11:
+=========
+Introduction to NIO:
+New Input Output Operations:
+
+Limitation of java.io package:
+1. few operations.
+2. limited set of functionalities.
+3. Scalability issues.
+
+New I/O operations:
+1. work consistently across 
+various platforms.
+2. many functionalities
+3. makes easier to write programs..
+
+Objectives of this chapter are:
+1. additional operations on Files - copy,delete etc
+2. to know about path and directories.
+3. newBufferedReader and writer classes.
+4. how to use directories/folders?
+
+Topic 1:
+FileSystems, Path and Directories:
+==========================
+
+every file is stored in a path.
+path indicates the location where
+ the file is exactly stored.
+
+D:\\FILES\\ProductData.txt
+
+import java.nio.file.*;
+class Demo20
+{
+public static void main(String[] args)
+{
+Path p=Paths.get("E:\\FILES\\ProductData.txt");
+System.out.println(p.getFileName());
+System.out.println(p.getRoot());
+}
+}
+
+output:
+E:\>javac Demo20.java
+E:\>java Demo20
+ProductData.txt
+E:\
+
+
+above code represent a simple 
+example of a path.
+the path indicates that location 
+of the file.. to know the
+ information
+about the path, we can use 
+predefined methods like  
+getFileName(), getRoot()
+etc.
+
+Path : two types : Absolute, Relative path.
+Absolute:
+Path p=Paths.get("E:\\FILES\\emp1.txt");
+
+Relative:
+Path p=Paths.get("emp1.txt");
+
+other examples of Path:
+===================
+
+a. we can also give the path as
+ below :
+
+
+Path p=Paths.get("E:","Ramu","JAVA","Student.txt");
+
+b.
+FileSystem f=FileSystems.getDefault();
+Path p=f.getPath("E:\\emp1.txt");
+
+c. we can also represent the path
+using dots.
+
+E:\\..\\emp1.txt
+
+. current directory
+.. parent directory
+
+E:\\..\\.\\emp1.txt
+E:\\Ramu\\JAVA\\emp1.txt
+
+d. we can also represent subpath 
+in a path.
+
+Path p=Paths.get("E:\\FILES\\JAVA\\Fruits.java");
+System.out.println(p.subpath(1,3));
+output:
+E:\>javac Demo20.java
+E:\>java Demo20
+Files
+
+E:\>javac Demo20.java
+E:\>java Demo20
+Wasim\Fruits.java
+
+e. we can also combine paths:
+Path p1=Paths.get("E:\\Ramu");
+Path p2=Paths.get("emp1.txt");
+System.out.println(p1.resolve(p2));
+
+output:
+E:\>java Demo20
+E:\Ramu\emp1.txt
+
+f. create a path between two paths:
+Path p1=Paths.get("Ramu");
+Path p2=Paths.get("emp1.txt");
+System.out.println(p2.relativize(p1));
+
+output:
+E:\>javac Demo20.java
+E:\>java Demo20
+..\emp1.txt
+E:\>javac Demo20.java
+E:\>java Demo20
+..\Ramu
+
+relativize is used to provide the 
+shortest path represented using 
+dots.
+
+FilesOperations on Path :
+===================
+if we want to know the whether the file
+ exists or the path exists,
+then use the code as below :
+
+import java.nio.file.*;
+class Demo20
+{
+public static void main(String[] args)
+{
+Path p1=Paths.get("E:\\FILES\\JAVA\\kiran.txt");
+System.out.println(Files.exists(p1));
+}
+}
+
+other functions:
+isReadable(), isWriteable() ,isExecutable()
+
+how to create and file and directories?
+=============================
+to create a directories:
+
+Path p1=Paths.get("D:\\FILES1");
+Files.createDirectories(p1);
+System.out.println("Directory 
+created..");
+
+to create a file inside the directories:
+============================
+Path p1=Paths.get("D:\\FILES2\\javaprogram.txt");
+Files.createFile(p1);
+System.out.println("Files created..");
+
+delete a file or path:
+Files.delete(p1);
+Files.deleteifExists(path);
+
+to copy the data:
+Path p1=Paths.get("emp1.txt");
+Path p2=Paths.get("emp2.txt");
+Files.copy(p1,p2);
+contents of p1 will be copied to 
+p2.
+
+Path p1=Paths.get("E:\\FILES1\\javaprograms.txt");
+Path p2=Paths.get("E:\\FILES2");
+Files.move(p1,p2);
+
+how do we print all the files inside my directory?
+import java.nio.file.*;
+class Demo20
+{
+public static void main(String[] args) throws Exception
+{
+Path p1=Paths.get("D:\\FILES");
+DirectoryStream<Path> ds=Files.
+newDirectoryStream(p1,"*.java");
+
+for (Path res : ds)
+System.out.println(res.getFileName());
+
+}
+}
+
+to print all the files, we need
+ to use *.*
+
+how to do we read/write data to a
+ file ?
+=============================
+To read data from a file :
+===================
+import java.nio.file.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+class Demo20
+{
+public static void main(String[] args) throws Exception
+{
+Path p1=Paths.get("E:\\FILES\\Student.txt");
+BufferedReader br=Files.newBufferedReader
+(p1,StandardCharsets.UTF_8);
+String data=br.readLine();
+while(data!=null)
+{
+System.out.println(data);
+data=br.readLine();
+}
+}
+}
+
+output:
+E:\>javac Demo20.java
+E:\>java Demo20
+Java Exam is on 30/04/2016.
+This batch is JAVA Batch.
+Ramu is the Faculty.
+
+writing the data to a file :
+==================
+import java.nio.file.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+class Demo20
+{
+public static void main(String[] args) throws Exception
+{
+Path p1=Paths.get("E:\\FILES\\Student.txt");
+
+BufferedWriter bw=Files.newBufferedWriter
+(p1,StandardCharsets.UTF_8);
+bw.write("welcome");
+bw.close();
+System.out.println("data written..");
+}
+}
+
+newBufferedWriter,newBufferedReader - 
+Character files.
+newInputStream,newOutputStream - byte files.
+newByteChannel - channel class.
+
+Recursive operations on Files:
+=======================
+when we need to do multiple 
+operations on
+ multiple files, then we need
+to apply the concept of recursive
+ operations.
+
+visit a file - 
+
+previsit - to check whether the 
+directory is
+ available or not.
+visitfile - check whether the
+ file is 
+available or not.
+if the file is available , 
+then complete 
+postVisit
+if the file is not available, then 
+VisitFileFailed.
+
+
+WalkFileTree(path, FileVisitor<T>)
+
+FileVisitor Interface only 
+contains the below 4 methods:
+PrevisitDirectory
+PostVisitDirectory
+VisitFile
+VisitFileFailed
+
+Exam code :
+==========
+
+import java.io.*;
+import java.nio.file.*;
+import java.nio.file.attribute.*;
+import static java.nio.file.FileVisitResult.*;
+
+class demo implements FileVisitor<Path>{
+
+public FileVisitResult preVisitDirectory(Path p1,BasicFileAttributes a){
+System.out.println("previsit Directory....");
+System.out.println(p1);
+return CONTINUE;
+}
+
+public FileVisitResult visitFile(Path p1, BasicFileAttributes a){
+System.out.println("Visit File...");
+System.out.println(p1);
+return CONTINUE;
+}
+
+public FileVisitResult postVisitDirectory(Path p1, IOException e){
+System.out.println("post visit directory..");
+System.out.println(p1);
+return CONTINUE;
+}
+
+public FileVisitResult visitFileFailed(Path p1,IOException e){
+return CONTINUE;
+}
+
+}
+class Demo20
+{
+public static void main(String[] args) throws Exception
+{
+Path p= Paths.get("E:\\FILES1");
+Files.walkFileTree(p,new demo());
+}
+}
+
+output:
+E:\FILES>javac Demo20.java
+E:\FILES>java Demo20
+previsit Directory....
+E:\FILES1
+Visit File...
+E:\FILES1\javaprogram.txt
+post visit directory..
+E:\FILES1
+
+DOS- Disk Operating System
+DosFileAttribute a=Files.readAttribute(path);
+

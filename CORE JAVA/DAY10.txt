@@ -1,0 +1,345 @@
+Chapter 6:
+1. Interfaces.
+2. DAO Pattern
+
+Interfaces:
+==========
+
+What are different types of inheritance?
+1. single inheritance
+2. multiple inheritance
+
+single inheritance -when a child class access only 
+one parent.
+
+multiple inheritance - when a child 
+class access multipleparent classes.
+
+we can achieve the concept of multiple inheritance
+using the "Interfaces"
+
+
+Interface - UI,Connecting,platform to
+ communicate, meeting basic layout
+
+Interface - defines the standard structure of methods
+to be followed by all the classes.
+
+Note: abstract also takes the same defintion but the
+difference is that
+abstract - single inheritance
+Interface- multiple inheritance
+
+syntax:
+======
+
+interface name
+{
+//methods declaration
+}
+
+
+Example code : 01
+=================
+Example of a simple interface
+==============================
+
+
+interface IAddition
+{
+void add();
+}
+
+class Calculator implements IAddition
+{
+int a=5,b=12;
+public void add(){
+System.out.println(a+b);
+}
+}
+
+class Demo11
+{
+public static void main(String[] args)
+{
+Calculator c=new Calculator();
+c.add();
+}
+}
+
+Note:
+1. Inside interface, only method 
+declartions have to be used.
+2. The interface methods are public 
+by default..hence
+there is no need to specify access specifiers.
+3. The child class can access interface using 
+implements keyword.
+4. the child class methods of the interface 
+should be public.
+
+Example code 02: For multiple interfaces:
+=========================================
+
+interface IAddition
+{
+void add();
+}
+interface ISubtraction
+{
+void sub();
+}
+
+
+class Calculator implements IAddition,ISubtraction
+{
+int a=5,b=12;
+public void add(){
+System.out.println(a+b);
+}
+public void sub(){
+System.out.println(a-b);
+}
+}
+
+class Demo11
+{
+public static void main(String[] args)
+{
+Calculator c=new Calculator();
+c.add();
+c.sub();
+}
+}
+
+Example 03:
+===========
+using Abstract classes and interface in the 
+same program
+========================================================
+
+interface IAddition
+{
+void add();
+}
+interface ISubtraction
+{
+void sub();
+}
+abstract class multiplication
+{
+abstract void mul();
+}
+
+class Calculator extends multiplication implements 
+IAddition,ISubtraction
+{
+int a=5,b=12;
+public void add(){
+System.out.println(a+b);
+}
+public void sub(){
+System.out.println(a-b);
+}
+void mul(){
+System.out.println(a*b);
+}
+}
+
+class Demo11
+{
+public static void main(String[] args)
+{
+Calculator c=new Calculator();
+c.add();
+c.sub();
+c.mul();
+}
+}
+
+Note:
+when we use , both extends and implements in the same
+program..then syntax should be
+
+class classname extends classname implements interfacename
+{
+
+}
+
+Example code 04:
+================
+Creating an Object of the interface:
+====================================
+Note: Object for the interface cannot
+ be created.
+
+IAddition a=new IAddition(); //error
+
+But we can create the Object as below ::
+
+IAddition a=new Calculator();
+a.add();
+ISubtraction b=new Calculator();
+b.sub();
+
+Example code 05:
+================
+one interface can use another interface
+========================================
+
+interface IAddition
+{
+void add();
+}
+interface ISubtraction extends IAddition
+{
+void sub();
+}
+class Calculator implements ISubtraction
+{
+int a=5,b=12;
+public void add(){
+System.out.println(a+b);
+}
+public void sub(){
+System.out.println(a-b);
+}
+}
+class Demo11
+{
+public static void main(String[] args)
+{
+IAddition a=new Calculator();
+a.add();
+ISubtraction b=new Calculator();
+b.sub();
+}
+}
+
+=============================================
+
+interface Bank
+{
+void withdraw();
+void checkBalance();
+}
+
+interface ATMServer extends Bank
+{
+void Connectivity();
+}
+
+class ICICI implements ATMServer
+{
+
+}
+Note:
+1. if one interface has to use another interface
+the extends keyword to be used.
+2. if one class has to use another interface
+then implements keyword to be used.
+
+Example code:
+=============
+To check the instance of the interface :
+========================================
+if we need to check whether the class 
+actually access the interface, 
+"instance of" operators.
+
+interface IAddition
+{
+void add();
+}
+class Calculator implements IAddtion
+{ int a=5,b=6;
+public void add()
+{
+System.out.println(a+b);
+}
+}
+
+class Demo11
+{
+public static void main(String[] args)
+{
+Calculator c=new Calculator();
+if (c instanceof IAddition)
+c.add();
+}
+}
+
+Marker Interfaces:
+==================
+The interfaces which are predefined in JAVA are 
+called as marker interfaces.
+
+examples:
+Runnable, Serializable, FileVisitor,
+Generics,Clonable etc
+
+===========================================================
+DAO Pattern:
+============
+[Data Access Object] Pattern
+
+
+Team - on a project.
+About Library Management Project.
+
+Member info,books info,return and borrow status, etc
+
+Rajesh - Project manager
+Priyanka - Developer
+Wasim - Developer
+
+Rajesh - Project Manager:
+
+interface Books
+{
+void Borrow();
+void Return();
+}
+
+Priyanka - Access the above the interface.
+
+class Customer implements Books
+{
+public void Borrow(){
+
+}
+public void Return(){
+
+}
+}
+
+Wasim- Write the main method 
+
+class Library
+{
+public static void main(String[] args){
+Customer c=new Customer();
+c.Borrow();
+c.Return();
+}
+}
+
+Project:
+
+Design			Interface
+Home.html		IAddition.java
+Transaction.html
+
+
+Logic			Database
+Customer.java		CustomerDB.java
+
+DAO Pattern:
+=============
+splitting up of the files into 
+different sections/folders
+so that the data can be easily accessed across
+ multiple applications.
+
+
+

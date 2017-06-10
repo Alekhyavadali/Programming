@@ -1,0 +1,23 @@
+package poly;
+
+class Baap { 
+     
+public int h = 4;     
+public void getH() {        
+System.out.println("Baap " + h);              }
+ 
+} 
+ 
+public class Beta extends Baap {     
+ 
+public int h = 44;    
+public void getH() {        
+System.out.println("Beta " + h);     }    
+ 
+public static void main(String[] args) {   
+       
+Baap b = new Baap();
+b.getH();
+Beta k=(Beta)b;
+}}
+                          
