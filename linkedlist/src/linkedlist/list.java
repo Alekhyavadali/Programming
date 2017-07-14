@@ -1,0 +1,45 @@
+package linkedlist;
+
+public class list extends listnode {
+	listnode topofstack=null;
+	
+void push(int x){
+	topofstack=new listnode(x,topofstack);
+	
+}
+void pop(){
+	topofstack=topofstack.next;
+}
+void display(){
+	listnode current= topofstack;
+	while(current!=null){
+		current.displayNode();
+		current=current.next;
+	}
+}
+public static void main(String[] args){
+	list k=new list();
+	k.push(7);
+	k.push(3);
+	k.push(4);
+	
+	k.pop();
+	k.push(5);
+	k.display();
+	}
+}
+class listnode {
+		int element;
+	listnode next;
+	public listnode(){}
+public	listnode(int theelement){
+	this(theelement,null);
+}
+public listnode(int theelement,listnode p){
+	element=theelement;
+	next=p;
+}public void displayNode() {
+    System.out.print(element);
+    System.out.print("  ");
+
+}}

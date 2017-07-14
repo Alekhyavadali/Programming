@@ -1,0 +1,100 @@
+package linkedlist1;
+public class list1 {
+public listnode header=null;
+public list1(){
+	header=new listnode();
+}
+public boolean isempty(){
+	return header.next==null;
+}
+public void makeempty(){
+	header.next=null;
+}
+public listiterator zeroth(){
+	return new listiterator(header);
+}
+public listiterator first(){
+	return new listiterator(header.next);
+}
+public void insert(int x,listiterator p){
+	listnode k=new listnode(x);
+	k.next=p.current.next;
+	p.current.next=k;
+}
+public listiterator find(int x){
+	listnode itr=header.next;
+	while(itr!=null&&!itr.equals(x)){
+		itr=itr.next;
+	}
+return new listiterator(itr);}
+public listiterator findprevious(int x){
+	listnode itr=header;
+	while(itr.next!=null&&itr.next.element!=x){
+		itr=itr.next;
+	}
+return new listiterator(itr);}
+public void remove(int x){
+	listiterator m=findprevious(x);
+	if(m.current.next!=null)
+	m.current.next=m.current.next.next;
+}
+public static void printlist(list1 thelist){
+	if(thelist.isempty()){
+	System.out.println("empty list");	
+	}
+	else
+	{
+		listiterator itr1=thelist.first();
+		for(;itr1.isvalid();itr1.advance()){
+			System.out.println(itr1.retrieve()+"");
+		}
+	}
+	System.out.println();
+}
+public static void main(String[] args){
+	list1 h=new list1();
+	listiterator l=new listiterator(h.header);
+	h.insert(3,l);
+	h.insert(4, l);
+	h.insert(5, l);
+	h.remove(4);
+	h.remove(3);
+	System.out.println(h.isempty());
+	h.makeempty();
+	System.out.println(h.isempty());
+	printlist(h);
+}
+}
+class listnode {
+	int element;
+listnode next;
+public listnode(){
+	next=null;
+}
+public	listnode(int theelement){
+this(theelement,null);
+}
+public listnode(int theelement,listnode p){
+element=theelement;
+next=p;
+}public void displayNode() {
+System.out.print(element);
+System.out.print("  ");
+
+}}
+class listiterator{
+	listnode current=null;
+	listiterator(listnode node){
+		current=node;
+	}
+	public boolean isvalid(){
+		
+			return current!=null;
+			}
+	public int retrieve(){
+		return current.element;
+	}
+	public void advance(){
+		current=current.next;
+	}
+}

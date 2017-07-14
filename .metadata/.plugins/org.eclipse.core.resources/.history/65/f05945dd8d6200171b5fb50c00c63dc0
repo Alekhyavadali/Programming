@@ -1,0 +1,29 @@
+package linkedlist;
+
+public class list {
+	listnode topofstack=null;
+void push(int x){
+	topofstack=new listnode(x,topofstack);
+	System.out.println(x);
+}
+void pop(){
+	topofstack.next=topofstack;
+}
+public static void main(String[] args){
+	list k=new list();
+	k.push(3);
+	k.push(2);
+	k.push(5);
+	}
+}
+class listnode extends list{
+		int element;
+	list next=null;
+public	listnode(int theelement){
+	this(theelement,null);
+}
+public listnode(int theelement,list p){
+	element=theelement;
+	next=p;
+}
+}

@@ -1,0 +1,20 @@
+package factorial;
+class fac{
+	void facto(double n){
+		 if(n==0){
+			 System.out.println(1);
+		 }else{
+			  System.out.println(facto(n-1));
+		 }
+	 }
+}
+public class fact {
+ 
+	public static void main(String[] args) {
+		fac f=new fac();
+		
+System.out.println(f.facto(10));
+	}
+
+	
+}

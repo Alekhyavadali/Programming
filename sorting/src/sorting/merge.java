@@ -2,65 +2,45 @@ package sorting;
 
 
 class mer{
- void me(int[] A){
-		int n=A.length;
-		if(n<2){
-			System.out.println("");
-		}
-		else
-		{
-			int m=n/2;
-			int[] left=new int[m];
-			int[] right=new int[n-m];
-		for(int i=0;i<=m-1;i++){
-			left[i]=A[i];
-			
-		}
-		for(int i=m;i<=n-1;i++){
-			right[i-m]=A[i];
-			}
+ void me(int[] A,int left,int right,int [] temparray){
 		
-		me(left);
-		me(right);
-		mergesort(left,right,A);
+		if(left<right)
+		{
+			int centre=(left+right)/2;
+			
+		
+		me(A,left,centre,temparray);
+		me(A,centre+1,right,temparray);
+		mergesort(A,left,centre+1,right,temparray);
 		}
 		
 		}	
-	void mergesort(int[] left,int[] right,int[] A){
-	int	n=left.length;
-	int m=right.length;
-		int k=0,i=0,j=0;
-	while(i<n&&j<m){
+	void mergesort(int[] A,int leftpos,int rightpos,int rightend,int[] temparray){
+	int leftend=rightpos-1;
+	int temppos=leftpos;
+	int nume=rightend-leftpos+1;
+	while(leftpos<=leftend&&rightpos<=rightend){
+	if(A[leftpos]<A[rightpos])
+		temparray[temppos++]=A[leftpos++];
+	else
+		temparray[temppos++]=A[rightpos++];}
+	while(leftpos<=leftend)
+		temparray[temppos++]=A[leftpos++];
+	while(rightpos<=rightend)
+		temparray[temppos++]=A[rightpos++];
 	
-		if(left[i]<right[j]){
-			A[k]=left[i];
-			i++;
-			k++;
-		}else{
-			A[k]=right[j];
-			j++;
-			k++;
-		}}
-		while(i<n){
-			if(left[i]<=right[j]){
-				A[k]=left[i];
-				i++;
-				k++;	
-			}
-			while(j<m){
-				A[k]=right[j];
-				j++;
-				k++;	
-			}
-		}for(int q:A){
-			System.out.print(q);
-		}
+		for(int i=0;i<nume;i++,rightend--){
+			A[rightend]=temparray[rightend];
+			System.out.println(temparray[rightend]);}
+	
+	
 	}}
 public class merge {
 public static void main(String[] args){
 	mer k=new mer();
 	int[] r=new int[]{2,1,3,4,7,5,0};
-	k.me(r);
+	int[] temparray=new int[7];
+	k.me(r,0,r.length-1,temparray);
 	
 }
 

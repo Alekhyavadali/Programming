@@ -1,0 +1,139 @@
+package binarytree;
+class binarynode{
+	public int element;
+	public binarynode left;
+	public binarynode right;
+	binarynode(){
+		this(-1,null,null);
+	}
+	binarynode(int elemen,binarynode lef,binarynode righ){
+		element=elemen;
+		left=lef;
+		right=righ;
+	}
+	public int getelement(){
+		return element;
+	}
+	public binarynode getleft(){
+		return left;
+}
+public void setelement(int ele){
+	element=ele;
+	}
+public void setright(binarynode rig){
+	right=rig;
+}
+public void setleft(binarynode lef){
+	left=lef;
+}
+public static int size(binarynode t){
+	if(t==null)
+		return -1;
+	else
+		return 1+size(t.left)+size(t.right);
+	}
+public static int height(binarynode t){
+	if(t==null)
+		return -1;
+	else
+		return 1+Math.max(height(t.left), height(t.right));
+}
+public binarynode duplicate(){
+	binarynode root=new binarynode(element,null,null);
+	if(left!=null){
+		root.left=left.duplicate();
+	}
+	if(right!=null){
+		root.right=right.duplicate();
+	}
+	return root;
+	}
+public void preorder(){
+	System.out.print(element);
+	if(left!=null)
+		left.preorder();
+	if(right!=null)
+		right.preorder();
+}
+public void postorder(){
+	if(left!=null)
+		left.postorder();
+	if(right!=null)
+		right.postorder();
+	System.out.print(element);
+}
+public void inorder(){
+	if(left!=null)
+		left.inorder();
+	System.out.print(element);
+	if(right!=null)
+		right.inorder();
+	}
+}
+public class tree {
+	binarynode root;
+	public tree(){
+		root=null;
+	}
+public	tree(int t){
+	root=new binarynode(t,null,null);
+}
+public binarynode getroot(){
+		return root;
+}
+public int size(){
+	return binarynode.size(root);
+}
+public int height(){
+	return binarynode.height(root);
+}
+public void preorder(){
+	root.preorder();
+}
+public void postorder(){
+	root.postorder();
+}
+public void inorder(){
+	root.inorder();
+}
+public void makeempty(){
+	root=null;
+}
+public boolean isempty(){
+	return root==null;
+}
+public void merge(int x,tree t1,tree t2){
+if(t1.root==t2.root && t1.root!=null){}
+root=new binarynode(x,t1.root,t2.root);
+if(this!=t1)
+	t1.root=null;
+if(this!=t2)
+	t2.root=null;
+	}
+public static void main(String[] args){
+	binarynode a=new binarynode(4,null,null);
+	binarynode b=new binarynode(5,null,null);
+	binarynode c=new binarynode(3,a,b);
+	binarynode d=new binarynode(7,null,null);
+	binarynode e=new binarynode(8,null,null);
+	binarynode f=new binarynode(6,d,e);
+	binarynode g=new binarynode(2,c,f);
+	//g.preorder();
+	//g.postorder();
+	tree h=new tree();
+	tree i=new tree(4);
+	tree j=new tree(5);
+	h.merge(3, i, j);
+int m=binarynode.height(g);
+System.out.println(m);	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+}
